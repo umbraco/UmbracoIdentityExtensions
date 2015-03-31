@@ -38,16 +38,8 @@ Copy-Item "$AppStartFolder\*.*" -Destination (New-Item ($AppStartDestFolder) -Ty
 # Rename all .cs files to .cs.pp
 Get-ChildItem $AppStartDestFolder -Recurse -Filter *.cs | Rename-Item -newname {  $_.name  -Replace '\.cs$','.cs.pp'  }
 
-# Replace the namespace with the token in each file
-Get-ChildItem $AppStartDestFolder -Recurse -Filter *.pp |
-Foreach-Object {
-	(Get-Content $_.FullName) `
-	-replace " Umbraco\.Web\.UI", " `$rootnamespace`$" |
-	Set-Content $_.FullName -Encoding UTF8;
-}
-
-# COPY THE README OVER
-Copy-Item "$BuildFolder\UmbracoCms.Identity.Readme.txt" -Destination $ReleaseFolder\Readme.txt
+# COPY THE READMES OVER
+Copy-Item "$BuildFolder\*.txt" -Destination $ReleaseFolder
 
 # Go get nuget.exe if we don't hae it
 $NuGet = "$BuildFolder\nuget.exe"
@@ -57,10 +49,24 @@ If ($FileExists -eq $False) {
 	Invoke-WebRequest $SourceNugetExe -OutFile $NuGet
 }
 
-# COPY OVER THE NUSPEC AND BUILD THE NUGET PACKAGE
-Copy-Item "$BuildFolder\UmbracoCms.Identity.nuspec" -Destination $ReleaseFolder
+# COPY OVER THE NUSPECS
+Copy-Item "$BuildFolder\*.nuspec" -Destination $ReleaseFolder
+
+# BUILD THE NUGET PACKAGES
+
 $NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.Identity.nuspec";
-Write-Output "DEBUGGING: " $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
+& $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
+
+$NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.Identity.ActiveDirectory.nuspec";
+& $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
+
+$NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.Identity.Google.nuspec";
+& $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
+
+$NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.Identity.Facebook.nuspec";
+& $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
+
+$NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.Identity.Microsoft.nuspec";
 & $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
 
 ""

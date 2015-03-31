@@ -19,7 +19,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="App_Start\**\*.pp" target="content\App_Start" />
-    <file src="Readme.txt" target="" />
+    <file src="App_Start\UmbracoCustomOwinStartup.cs.pp" target="content\App_Start" />
+    <file src="App_Start\UmbracoStandardOwinStartup.cs.pp" target="content\App_Start" />
+    <file src="UmbracoCms.Identity.Readme.txt" target="Readme.txt" />
   </files>
 </package>

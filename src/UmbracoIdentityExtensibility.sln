@@ -7,14 +7,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E90962AB-AB3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{EE0B2A47-0042-474F-A01C-90497D75FD6D}"
 	ProjectSection(SolutionItems) = preProject
-		App_Start\UmbracoBackOfficeAuthExtensions.cs = App_Start\UmbracoBackOfficeAuthExtensions.cs
+		App_Start\UmbracoADAuthExtensions.cs = App_Start\UmbracoADAuthExtensions.cs
 		App_Start\UmbracoCustomOwinStartup.cs = App_Start\UmbracoCustomOwinStartup.cs
+		App_Start\UmbracoFacebookAuthExtensions.cs = App_Start\UmbracoFacebookAuthExtensions.cs
+		App_Start\UmbracoGoogleAuthExtensions.cs = App_Start\UmbracoGoogleAuthExtensions.cs
+		App_Start\UmbracoMicrosoftAuthExtensions.cs = App_Start\UmbracoMicrosoftAuthExtensions.cs
 		App_Start\UmbracoStandardOwinStartup.cs = App_Start\UmbracoStandardOwinStartup.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{596116B3-3B38-481C-9442-643AF4CA1071}"
 	ProjectSection(SolutionItems) = preProject
 		..\build\Build-Release.ps1 = ..\build\Build-Release.ps1
+		..\build\UmbracoCms.Identity.ActiveDirectory.nuspec = ..\build\UmbracoCms.Identity.ActiveDirectory.nuspec
+		..\build\UmbracoCms.Identity.ActiveDirectory.Readme.txt = ..\build\UmbracoCms.Identity.ActiveDirectory.Readme.txt
+		..\build\UmbracoCms.Identity.Facebook.nuspec = ..\build\UmbracoCms.Identity.Facebook.nuspec
+		..\build\UmbracoCms.Identity.Facebook.Readme.txt = ..\build\UmbracoCms.Identity.Facebook.Readme.txt
+		..\build\UmbracoCms.Identity.Google.nuspec = ..\build\UmbracoCms.Identity.Google.nuspec
+		..\build\UmbracoCms.Identity.Google.Readme.txt = ..\build\UmbracoCms.Identity.Google.Readme.txt
+		..\build\UmbracoCms.Identity.Microsoft.nuspec = ..\build\UmbracoCms.Identity.Microsoft.nuspec
+		..\build\UmbracoCms.Identity.Microsoft.Readme.txt = ..\build\UmbracoCms.Identity.Microsoft.Readme.txt
 		..\build\UmbracoCms.Identity.nuspec = ..\build\UmbracoCms.Identity.nuspec
 		..\build\UmbracoCms.Identity.Readme.txt = ..\build\UmbracoCms.Identity.Readme.txt
 	EndProjectSection

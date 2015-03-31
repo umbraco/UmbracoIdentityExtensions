@@ -9,140 +9,13 @@ using Microsoft.Owin;
 using Owin;
 using Umbraco.Core;
 using Umbraco.Web.Security.Identity;
-//using Microsoft.Owin.Security.Facebook;
-//using Microsoft.Owin.Security.Google;
-//using Microsoft.Owin.Security.OpenIdConnect;
-//using Microsoft.Owin.Security.MicrosoftAccount;
-//using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
 namespace $rootnamespace$
 {
-    public static class UmbracoBackOfficeAuthExtensions
+    public static class UmbracoADAuthExtensions
     {
-        /*
-
-        ///  <summary>
-        ///  Configure microsoft account sign-in
-        ///  </summary>
-        ///  <param name="app"></param>
-        ///  <param name="clientId"></param>
-        ///  <param name="clientSecret"></param>
-        /// <param name="caption"></param>
-        /// <param name="style"></param>
-        /// <param name="icon"></param>
-        /// <remarks>
-        ///  
-        ///  Nuget installation:
-        ///      Microsoft.Owin.Security.MicrosoftAccount
-        /// 
-        ///  Microsoft account documentation for ASP.Net Identity can be found:
-        ///  
-        ///  http://www.asp.net/web-api/overview/security/external-authentication-services#MICROSOFT
-        ///  http://blogs.msdn.com/b/webdev/archive/2012/09/19/configuring-your-asp-net-application-for-microsoft-oauth-account.aspx
-        ///  
-        ///  Microsoft apps can be created here:
-        ///  
-        ///  http://go.microsoft.com/fwlink/?LinkID=144070
-        ///  
-        ///  </remarks>
-        public static void ConfigureBackOfficeMicrosoftAuth(this IAppBuilder app, string clientId, string clientSecret,
-            string caption = "Microsoft", string style = "btn-microsoft", string icon = "fa-windows")
-        {
-            var msOptions = new MicrosoftAccountAuthenticationOptions
-            {
-                ClientId = clientId,
-                ClientSecret = clientSecret,
-                SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType
-            };
-            msOptions.ForUmbracoBackOffice(style, icon);
-            msOptions.Caption = caption;
-            app.UseMicrosoftAccountAuthentication(msOptions);
-        }
-
-        ///  <summary>
-        ///  Configure google sign-in
-        ///  </summary>
-        ///  <param name="app"></param>
-        ///  <param name="clientId"></param>
-        ///  <param name="clientSecret"></param>
-        /// <param name="caption"></param>
-        /// <param name="style"></param>
-        /// <param name="icon"></param>
-        /// <remarks>
-        ///  
-        ///  Nuget installation:
-        ///      Microsoft.Owin.Security.Google
-        /// 
-        ///  Google account documentation for ASP.Net Identity can be found:
-        ///  
-        ///  http://www.asp.net/web-api/overview/security/external-authentication-services#GOOGLE
-        ///  
-        ///  Google apps can be created here:
-        ///  
-        ///  https://developers.google.com/accounts/docs/OpenIDConnect#getcredentials
-        ///  
-        ///  </remarks>
-        public static void ConfigureBackOfficeGoogleAuth(this IAppBuilder app, string clientId, string clientSecret,
-            string caption = "Google", string style = "btn-google-plus", string icon = "fa-google-plus")
-        {
-            var googleOptions = new GoogleOAuth2AuthenticationOptions
-            {
-                ClientId = clientId,
-                ClientSecret = clientSecret, 
-                //In order to allow using different google providers on the front-end vs the back office,
-                // these settings are very important to make them distinguished from one another.
-                SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType,
-                //  By default this is '/signin-google', you will need to change that default value in your
-                //  Google developer settings for your web-app in the "REDIRECT URIS" setting
-                CallbackPath = new PathString("/umbraco-google-signin")
-            };
-            googleOptions.ForUmbracoBackOffice(style, icon);
-            googleOptions.Caption = caption;
-            app.UseGoogleAuthentication(googleOptions);
-        }
-
-        ///  <summary>
-        ///  Configure facebook sign-in
-        ///  </summary>
-        ///  <param name="app"></param>
-        ///  <param name="appId"></param>
-        ///  <param name="appSecret"></param>
-        /// <param name="caption"></param>
-        /// <param name="style"></param>
-        /// <param name="icon"></param>
-        /// <remarks>
-        ///  
-        ///  Nuget installation:
-        ///      Microsoft.Owin.Security.Facebook
-        /// 
-        ///  Facebook account documentation for ASP.Net Identity can be found:
-        ///  
-        ///  http://www.asp.net/web-api/overview/security/external-authentication-services#FACEBOOK
-        ///  
-        ///  Facebook apps can be created here:
-        /// 
-        ///  https://developers.facebook.com/
-        ///  
-        ///  </remarks>
-        public static void ConfigureBackOfficeFacebookAuth(this IAppBuilder app, string appId, string appSecret,
-            string caption = "Facebook", string style = "btn-facebook", string icon = "fa-facebook")
-        {
-            var fbOptions = new FacebookAuthenticationOptions
-            {
-                AppId = appId,
-                AppSecret = appSecret,
-                //In order to allow using different google providers on the front-end vs the back office,
-                // these settings are very important to make them distinguished from one another.
-                SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType,
-                //  By default this is '/signin-facebook', you will need to change that default value in your
-                //  Facebook developer settings for your app in the Advanced settings under "Client OAuth Login"
-                //  in the "Valid OAuth redirect URIs", specify the full URL, for example: http://mysite.com/umbraco-facebook-signin
-                CallbackPath = new PathString("/umbraco-facebook-signin")
-            };
-            fbOptions.ForUmbracoBackOffice(style, icon);
-            fbOptions.Caption = caption;
-            app.UseFacebookAuthentication(fbOptions);
-        }
 
         ///  <summary>
         ///  Configure ActiveDirectory sign-in
@@ -219,16 +92,10 @@ namespace $rootnamespace$
             adOptions.ForUmbracoBackOffice(style, icon);
             adOptions.Caption = caption;
             app.UseOpenIdConnectAuthentication(adOptions);
-        }
-    
-         */
+        }    
 
     }
     
-    
-
-    /*
-
     /// <summary>
     /// A Session cache token storage which is required to initialize the AD Identity provider on startup
     /// </summary>
@@ -237,7 +104,7 @@ namespace $rootnamespace$
     /// https://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNet/blob/master/TodoListWebApp/Utils/NaiveSessionCache.cs
     /// 
     /// There are some newer examples of different token storage including persistent storage here:
-    /// It would appear that this is better for whatever reason: https://github.com/OfficeDev/O365-WebApp-SingleTenant/blob/master/O365-WebApp-SingleTenant/Models/ADALTokenCache.cs
+    /// https://github.com/OfficeDev/O365-WebApp-SingleTenant/blob/master/O365-WebApp-SingleTenant/Models/ADALTokenCache.cs
     /// 
     /// The type of token storage will be dependent on your requirements but this should be fine for standard installations
     /// </remarks>
@@ -304,5 +171,4 @@ namespace $rootnamespace$
         }
     }
     
-    */
 }

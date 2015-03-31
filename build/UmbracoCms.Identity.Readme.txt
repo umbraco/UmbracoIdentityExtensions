@@ -8,7 +8,7 @@
                                                    
 ----------------------------------------------------
 
-Umbraco extensibility code has been installed for ASP.Net Identity with Umbraco back office users
+Umbraco extensibility code has been installed for ASP.Net Identity for Umbraco back office users
 
 The files have been installed into your App_Start folder if you have a Web Application project 
 or into App_Code if you have a Website project. 
@@ -29,5 +29,5 @@ following files for full details:
 									To enable the 'UmbracoCustomOwinStartup', update the web.config
 									appSetting "owin:appStartup" to be: "UmbracoCustomOwinStartup"
 
-* UmbracoBackOfficeAuthExtensions	Includes extension methods snippets to enable 3rd party ASP.Net
+* UmbracoAuthExtensions				Includes extension methods snippets to enable 3rd party ASP.Net
 									Identity providers to work with the Umbraco back office. 
