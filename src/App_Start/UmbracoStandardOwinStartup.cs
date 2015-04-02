@@ -5,6 +5,9 @@ using Umbraco.Core.Security;
 using Umbraco.Web.Security.Identity;
 using $rootnamespace$;
 
+//To use this startup class, change the appSetting value in the web.config called 
+// "owin:appStartup" to be "StandardUmbracoOwinStartup"
+
 [assembly: OwinStartup("StandardUmbracoOwinStartup", typeof(StandardUmbracoOwinStartup))]
 
 namespace $rootnamespace$
@@ -15,7 +18,7 @@ namespace $rootnamespace$
     /// <remarks>
     /// The startup type is specified in appSettings under owin:appStartup - change it to "StandardUmbracoStartup" to use this class
     /// </remarks>
-    public class StandardUmbracoOwinStartup : DefaultUmbracoOwinStartup
+    public class StandardUmbracoOwinStartup : UmbracoDefaultOwinStartup
     {
         public override void Configuration(IAppBuilder app)
         {
