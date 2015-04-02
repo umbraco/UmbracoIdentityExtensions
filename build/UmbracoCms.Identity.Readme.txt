@@ -18,16 +18,13 @@ the ASP.Net Identity implementaion for back office users in Umbraco. For all 3rd
 ASP.Net providers, their dependencies will need to be manually installed. See comments in the
 following files for full details:
 
-* StandardUmbracoOwinStartup.cs 	Includes code snippets to enable 3rd party ASP.Net Identity 
+* UmbracoStandardOwinStartup.cs 	Includes code snippets to enable 3rd party ASP.Net Identity 
 									providers to work with the Umbraco back office.
-									To enable the 'StandardUmbracoOwinStartup', update the web.config
-									appSetting "owin:appStartup" to be: "StandardUmbracoOwinStartup"
+									To enable the 'UmbracoStandardOwinStartup', update the web.config
+									appSetting "owin:appStartup" to be: "UmbracoStandardOwinStartup"
 
 * UmbracoCustomOwinStartup			Includes code snippets to customize the Umbraco ASP.Net 
 									Identity implementation for back office users as well as 
 									snippets to enable 3rd party ASP.Net Identity providers to work.
 									To enable the 'UmbracoCustomOwinStartup', update the web.config
 									appSetting "owin:appStartup" to be: "UmbracoCustomOwinStartup"
-
-* UmbracoAuthExtensions				Includes extension methods snippets to enable 3rd party ASP.Net
-									Identity providers to work with the Umbraco back office. 

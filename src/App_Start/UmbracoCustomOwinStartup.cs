@@ -8,7 +8,7 @@ using $rootnamespace$;
 //To use this startup class, change the appSetting value in the web.config called 
 // "owin:appStartup" to be "CustomUmbracoOwinStartup"
 
-[assembly: OwinStartup("CustomUmbracoOwinStartup", typeof(StandardUmbracoOwinStartup))]
+[assembly: OwinStartup("UmbracoCustomOwinStartup", typeof(UmbracoCustomOwinStartup))]
 
 namespace $rootnamespace$
 {
@@ -20,7 +20,7 @@ namespace $rootnamespace$
     /// 
     /// This startup class would allow you to customize the Identity IUserStore and/or IUserManager for the Umbraco Backoffice
     /// </remarks>
-    public class CustomUmbracoOwinStartup
+    public class UmbracoCustomOwinStartup
     {
         public void Configuration(IAppBuilder app)
         {
