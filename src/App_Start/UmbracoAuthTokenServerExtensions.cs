@@ -26,6 +26,25 @@ namespace $rootnamespace$
         /// callbacks that can be registered for the BackOfficeAuthServerProvider these types of things could be implemented. Additionally the
         /// BackOfficeAuthServerProvider could be overridden to include this functionality instead of coding the logic into the callbacks.
         /// </remarks>
+        /// <example>
+        /// 
+        /// An example of using this implementation is to use the UmbracoStandardOwinSetup and execute this extension method as follows:
+        /// 
+        /// <![CDATA[
+        /// 
+        ///   public override void Configuration(IAppBuilder app)
+        ///   {
+        ///       //ensure the default options are configured
+        ///       base.Configuration(app);
+        ///   
+        ///       //configure token auth
+        ///       app.ConfigureBackOfficeTokenAuth();
+        ///   }
+        /// 
+        /// ]]>
+        /// 
+        /// Then be sure to read the details in UmbracoStandardOwinSetup on how to configure Owin to startup using it.
+        /// </example>
         public static void ConfigureBackOfficeTokenAuth(this IAppBuilder app)
         {
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
