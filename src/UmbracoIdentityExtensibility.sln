@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{EE0B2A47-0042-474F-A01C-90497D75FD6D}"
 	ProjectSection(SolutionItems) = preProject
 		App_Start\UmbracoADAuthExtensions.cs = App_Start\UmbracoADAuthExtensions.cs
+		App_Start\UmbracoAuthTokenServerExtensions.cs = App_Start\UmbracoAuthTokenServerExtensions.cs
 		App_Start\UmbracoCustomOwinStartup.cs = App_Start\UmbracoCustomOwinStartup.cs
 		App_Start\UmbracoFacebookAuthExtensions.cs = App_Start\UmbracoFacebookAuthExtensions.cs
 		App_Start\UmbracoGoogleAuthExtensions.cs = App_Start\UmbracoGoogleAuthExtensions.cs
