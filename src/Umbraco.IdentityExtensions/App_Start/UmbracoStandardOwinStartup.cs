@@ -47,12 +47,22 @@ namespace Umbraco.IdentityExtensions.CodeFiles
 
             /*
              * To configure a simple auth token server for the back office:
+             *             
+             * By default the CORS policy is to allow all requests
              * 
-             * app.ConfigureBackOfficeTokenAuth(new BackOfficeAuthServerProviderOptions
-             *      {
-             *          
-             *      });
+             *      app.ConfigureBackOfficeTokenAuth(new BackOfficeAuthServerProviderOptions());
+             *      
+             * If you want to have a custom CORS policy for the token server you can provide
+             * a custom CORS policy, example: 
              * 
+             *      app.ConfigureBackOfficeTokenAuth(
+             *          new BackOfficeAuthServerProviderOptions(
+             *              new new CorsPolicy()
+             *               {
+             *                   AllowAnyHeader = true,
+             *                   AllowAnyMethod = true,
+             *                   Origins = { "http://mywebsite.com" }                
+             *               }));
              */
 
         }

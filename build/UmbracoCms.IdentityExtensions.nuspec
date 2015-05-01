@@ -15,7 +15,8 @@
     <language>en-US</language>
     <tags>umbraco aspnet identity</tags>
     <dependencies>
-      <dependency id="UmbracoCms.Core" version="[7.3.0, 8.0.0)" />
+      <dependency id="UmbracoCms.Core" version="[7.3.0-nightly8, 8.0.0)" />
+      <dependency id="Microsoft.AspNet.Cors" version="[5.2.3, 6.0.0)" />      
     </dependencies>
   </metadata>
   <files>

@@ -15,7 +15,7 @@
     <language>en-US</language>
     <tags>umbraco aspnet identity activedirectory</tags>
     <dependencies>
-      <dependency id="UmbracoCms.Identity" version="1.0.0" />
+      <dependency id="UmbracoCms.Identity" version="1.0.0-nightly2" />
       <dependency id="Microsoft.Owin.Security.OpenIdConnect" version="[3.0.1,4.0.0)" />
       <dependency id="Microsoft.IdentityModel.Clients.ActiveDirectory" version="[2.14.201151115,3.0.0)" />
     </dependencies>
