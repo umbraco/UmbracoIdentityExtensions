@@ -3,27 +3,37 @@ using Owin;
 using Umbraco.Core;
 using Umbraco.Core.Security;
 using Umbraco.Web.Security.Identity;
-using $rootnamespace$;
+using Umbraco.IdentityExtensions.CodeFiles;
 
 //To use this startup class, change the appSetting value in the web.config called 
-// "owin:appStartup" to be "UmbracoStandardOwinStartup"
+// "owin:appStartup" to be "CustomUmbracoOwinStartup"
 
-[assembly: OwinStartup("UmbracoStandardOwinStartup", typeof(UmbracoStandardOwinStartup))]
+[assembly: OwinStartup("UmbracoCustomOwinStartup", typeof(UmbracoCustomOwinStartup))]
 
-namespace $rootnamespace$
+namespace Umbraco.IdentityExtensions.CodeFiles
 {
     /// <summary>
-    /// The standard way to configure OWIN for Umbraco
+    /// A custom way to configure OWIN for Umbraco
     /// </summary>
     /// <remarks>
-    /// The startup type is specified in appSettings under owin:appStartup - change it to "StandardUmbracoStartup" to use this class
+    /// The startup type is specified in appSettings under owin:appStartup - change it to "CustomUmbracoStartup" to use this class
+    /// 
+    /// This startup class would allow you to customize the Identity IUserStore and/or IUserManager for the Umbraco Backoffice
     /// </remarks>
-    public class UmbracoStandardOwinStartup : UmbracoDefaultOwinStartup
+    public class UmbracoCustomOwinStartup
     {
-        public override void Configuration(IAppBuilder app)
+        public void Configuration(IAppBuilder app)
         {
-            //ensure the default options are configured
-            base.Configuration(app);
+            //Configure the Identity user manager for use with Umbraco Back office 
+            // (EXPERT: an overload accepts a custom BackOfficeUserStore implementation)
+            app.ConfigureUserManagerForUmbracoBackOffice(
+                ApplicationContext.Current,
+                Core.Security.MembershipProviderExtensions.GetUsersMembershipProvider().AsUmbracoMembershipProvider());
+
+            //Ensure owin is configured for Umbraco back office authentication
+            app
+                .UseUmbracoBackOfficeCookieAuthentication()
+                .UseUmbracoBackOfficeExternalCookieAuthentication();
 
             /* 
              * Configure external logins for the back office:
@@ -43,7 +53,6 @@ namespace $rootnamespace$
              * packages listed above to review it's code samples 
              *  
              */
-
         }
     }
 }

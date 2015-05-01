@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8">
-    <id>UmbracoCms.Identity</id>
+    <id>UmbracoCms.IdentityExtensions</id>
     <version>1.0.0</version>
     <title>Umbraco Extensibility for ASP.Net Identity</title>
     <authors>Umbraco HQ</authors>
     <owners>Umbraco HQ</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>http://umbraco.com/</projectUrl>
+    <projectUrl>https://github.com/umbraco/UmbracoIdentityExtensibility</projectUrl>
     <iconUrl>http://umbraco.com/media/357769/100px_transparent.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Installs files/classes to help with ASP.Net Identity extensibility for Umbraco back office</description>
@@ -19,8 +19,11 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="App_Start\UmbracoCustomOwinStartup.cs.pp" target="content\App_Start" />
-    <file src="App_Start\UmbracoStandardOwinStartup.cs.pp" target="content\App_Start" />
-    <file src="UmbracoCms.Identity.Readme.txt" target="Readme.txt" />
+    <file src="Umbraco.IdentityExtensions\bin\*.dll" target="lib\net45" />
+    <file src="Umbraco.IdentityExtensions\bin\*.pdb" target="lib\net45" />
+    <file src="Umbraco.IdentityExtensions\App_Start\UmbracoCustomOwinStartup.cs.pp" target="content\App_Start" />
+    <file src="Umbraco.IdentityExtensions\App_Start\UmbracoStandardOwinStartup.cs.pp" target="content\App_Start" />
+    <file src="Umbraco.IdentityExtensions\App_Start\UmbracoAuthTokenServerExtensions.cs.pp" target="content\App_Start" />
+    <file src="Readme.txt" target="Readme.txt" />
   </files>
 </package>

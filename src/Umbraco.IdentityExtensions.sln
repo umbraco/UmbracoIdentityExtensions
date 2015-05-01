@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E90962AB-AB3C-4882-946F-FCD524333448}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{EE0B2A47-0042-474F-A01C-90497D75FD6D}"
+	ProjectSection(SolutionItems) = preProject
+		App_Start\UmbracoADAuthExtensions.cs = App_Start\UmbracoADAuthExtensions.cs
+		App_Start\UmbracoFacebookAuthExtensions.cs = App_Start\UmbracoFacebookAuthExtensions.cs
+		App_Start\UmbracoGoogleAuthExtensions.cs = App_Start\UmbracoGoogleAuthExtensions.cs
+		App_Start\UmbracoMicrosoftAuthExtensions.cs = App_Start\UmbracoMicrosoftAuthExtensions.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{596116B3-3B38-481C-9442-643AF4CA1071}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\ActiveDirectory.Readme.txt = ..\build\ActiveDirectory.Readme.txt
+		..\build\Build-Release.ps1 = ..\build\Build-Release.ps1
+		..\build\Build.bat = ..\build\Build.bat
+		..\build\Facebook.Readme.txt = ..\build\Facebook.Readme.txt
+		..\build\Google.Readme.txt = ..\build\Google.Readme.txt
+		..\build\Microsoft.Readme.txt = ..\build\Microsoft.Readme.txt
+		..\build\Readme.txt = ..\build\Readme.txt
+		..\build\UmbracoCms.IdentityExtensions.ActiveDirectory.nuspec = ..\build\UmbracoCms.IdentityExtensions.ActiveDirectory.nuspec
+		..\build\UmbracoCms.IdentityExtensions.Facebook.nuspec = ..\build\UmbracoCms.IdentityExtensions.Facebook.nuspec
+		..\build\UmbracoCms.IdentityExtensions.Google.nuspec = ..\build\UmbracoCms.IdentityExtensions.Google.nuspec
+		..\build\UmbracoCms.IdentityExtensions.Microsoft.nuspec = ..\build\UmbracoCms.IdentityExtensions.Microsoft.nuspec
+		..\build\UmbracoCms.IdentityExtensions.nuspec = ..\build\UmbracoCms.IdentityExtensions.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbraco.IdentityExtensions", "Umbraco.IdentityExtensions\Umbraco.IdentityExtensions.csproj", "{BC76C3B4-41A8-44CF-BE75-60832CB69FBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC76C3B4-41A8-44CF-BE75-60832CB69FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC76C3B4-41A8-44CF-BE75-60832CB69FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC76C3B4-41A8-44CF-BE75-60832CB69FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC76C3B4-41A8-44CF-BE75-60832CB69FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE0B2A47-0042-474F-A01C-90497D75FD6D} = {E90962AB-AB3C-4882-946F-FCD524333448}
+		{BC76C3B4-41A8-44CF-BE75-60832CB69FBC} = {E90962AB-AB3C-4882-946F-FCD524333448}
+	EndGlobalSection
+EndGlobal

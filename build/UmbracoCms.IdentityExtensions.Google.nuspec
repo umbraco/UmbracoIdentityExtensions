@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8">
-    <id>UmbracoCms.Identity.Google</id>
+    <id>UmbracoCms.IdentityExtensions.Google</id>
     <version>1.0.0</version>
     <title>Umbraco Extensibility with ASP.Net Identity for Google OAuth</title>
     <authors>Umbraco HQ</authors>
     <owners>Umbraco HQ</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>http://umbraco.com/</projectUrl>
+    <projectUrl>https://github.com/umbraco/UmbracoIdentityExtensibility</projectUrl>
     <iconUrl>http://umbraco.com/media/357769/100px_transparent.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Installs files/classes to help with ASP.Net Identity extensibility for Umbraco back office and Google OAuth</description>
@@ -21,6 +21,6 @@
   </metadata>
   <files>
     <file src="App_Start\UmbracoGoogleAuthExtensions.cs.pp" target="content\App_Start" />    
-    <file src="UmbracoCms.Identity.Google.Readme.txt" target="Readme.txt" />
+    <file src="Google.Readme.txt" target="Readme.txt" />
   </files>
 </package>

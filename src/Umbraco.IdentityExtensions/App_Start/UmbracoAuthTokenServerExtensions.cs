@@ -5,9 +5,9 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Umbraco.Web.Security.Identity;
 
-using $rootnamespace$;
+using Umbraco.IdentityExtensions.CodeFiles;
 
-namespace $rootnamespace$
+namespace Umbraco.IdentityExtensions.CodeFiles
 {
 
     /// <summary>
@@ -45,7 +45,7 @@ namespace $rootnamespace$
         /// 
         /// Then be sure to read the details in UmbracoStandardOwinSetup on how to configure Owin to startup using it.
         /// </example>
-        public static void ConfigureBackOfficeTokenAuth(this IAppBuilder app)
+        public static void ConfigureBackOfficeTokenAuth(this IAppBuilder app, BackOfficeAuthServerProviderOptions backofficeAuthServerProviderOptions = null)
         {
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
@@ -53,11 +53,12 @@ namespace $rootnamespace$
 #if DEBUG
                 AllowInsecureHttp = true,
 #endif
+                
                 TokenEndpointPath = new PathString("/umbraco/oauth/token"),
                 //set as different auth type to not interfere with anyone doing this on the front-end
                 AuthenticationType = Core.Constants.Security.BackOfficeTokenAuthenticationType,
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new BackOfficeAuthServerProvider()
+                Provider = new BackOfficeAuthServerProvider(backofficeAuthServerProviderOptions)
                 {
                     OnValidateClientAuthentication = context =>
                     {
