@@ -211,9 +211,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\UmbracoAuthTokenServerExtensions.cs" />
-    <Compile Include="App_Start\UmbracoCustomOwinStartup.cs" />
-    <Compile Include="App_Start\UmbracoStandardOwinStartup.cs" />
+    <None Include="App_Start\UmbracoAuthTokenServerExtensions.cs.pp" />
+    <None Include="App_Start\UmbracoCustomOwinStartup.cs.pp" />
+    <None Include="App_Start\UmbracoStandardOwinStartup.cs.pp" />
     <Compile Include="BackOfficeAuthServerProvider.cs" />
     <Compile Include="BackOfficeAuthServerProviderOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

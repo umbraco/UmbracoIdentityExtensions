@@ -79,8 +79,6 @@ New-Item "$IdentityExtensionsReleaseFolder\bin\" -Type directory
 New-Item "$IdentityExtensionsReleaseFolder\App_Start\" -Type directory
 Copy-Item "$ProjFolder\bin\Release\*.*" -Destination "$IdentityExtensionsReleaseFolder\bin\" -Include $include
 Copy-Item "$ProjFolder\App_Start\*.*" -Destination "$IdentityExtensionsReleaseFolder\App_Start\"
-# Rename all .cs files to .cs.pp
-Get-ChildItem "$IdentityExtensionsReleaseFolder\App_Start\" -Recurse -Filter *.cs | Rename-Item -newname {  $_.name  -Replace '\.cs$','.cs.pp'  }
 # Replace the namespace with the token in each file
 Get-ChildItem "$IdentityExtensionsReleaseFolder\App_Start\" -Recurse -Filter *.pp |
 Foreach-Object {

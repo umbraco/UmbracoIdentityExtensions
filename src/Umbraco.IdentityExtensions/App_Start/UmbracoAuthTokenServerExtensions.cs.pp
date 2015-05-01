@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using Umbraco.IdentityExtensions;
 using Umbraco.Web.Security.Identity;
 
 using Umbraco.IdentityExtensions.CodeFiles;
@@ -20,6 +21,7 @@ namespace Umbraco.IdentityExtensions.CodeFiles
         /// Configures Umbraco to issue and process authentication tokens
         /// </summary>
         /// <param name="app"></param>
+        /// <param name="backofficeAuthServerProviderOptions"></param>
         /// <remarks>
         /// This is a very simple implementation of token authentication, the expiry below is for a single day and with
         /// this implementation there is no way to force expire tokens on the server however given the code below and the additional
@@ -56,7 +58,7 @@ namespace Umbraco.IdentityExtensions.CodeFiles
                 
                 TokenEndpointPath = new PathString("/umbraco/oauth/token"),
                 //set as different auth type to not interfere with anyone doing this on the front-end
-                AuthenticationType = Core.Constants.Security.BackOfficeTokenAuthenticationType,
+                AuthenticationType = Umbraco.Core.Constants.Security.BackOfficeTokenAuthenticationType,
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new BackOfficeAuthServerProvider(backofficeAuthServerProviderOptions)
                 {

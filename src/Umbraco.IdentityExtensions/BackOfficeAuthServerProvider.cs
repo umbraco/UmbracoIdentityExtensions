@@ -25,18 +25,25 @@ namespace Umbraco.IdentityExtensions
         {
             var userManager = context.OwinContext.GetUserManager<BackOfficeUserManager>();
 
+            var accessControlRequestMethodHeaders = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod);
+            var originHeaders = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.Origin);
+            var accessControlRequestHeaders = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod);
             var corsRequest = new CorsRequestContext
             {
                 Host = context.Request.Host.Value,
                 HttpMethod = context.Request.Method,
-                Origin = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.Origin).FirstOrDefault(),
+                Origin = originHeaders == null ? null : originHeaders.FirstOrDefault(),
                 RequestUri = context.Request.Uri,
-                AccessControlRequestMethod = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod).FirstOrDefault()
+                AccessControlRequestMethod = accessControlRequestMethodHeaders == null ? null : accessControlRequestMethodHeaders.FirstOrDefault()
             };
-            foreach (var header in context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod))
+            if (accessControlRequestHeaders != null)
             {
-                corsRequest.AccessControlRequestHeaders.Add(header);
+                foreach (var header in context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod))
+                {
+                    corsRequest.AccessControlRequestHeaders.Add(header);
+                }    
             }
+            
             var engine = new CorsEngine();
             var result = engine.EvaluatePolicy(corsRequest, _options.CorsPolicy);
 
