@@ -9,22 +9,16 @@ namespace Umbraco.IdentityExtensions
         /// <summary>
         /// Default options allows all request, CORS does not limit anything
         /// </summary>
-        /// <param name="corsPolicy"></param>
-        public BackOfficeAuthServerProviderOptions(CorsPolicy corsPolicy = null)
+        public BackOfficeAuthServerProviderOptions()
         {
-            if (corsPolicy == null)
+            CorsPolicy = new CorsPolicy()
             {
-                corsPolicy = new CorsPolicy()
-                {
-                    AllowAnyHeader = true,
-                    AllowAnyMethod = true,
-                    AllowAnyOrigin = true                    
-                };
-            }
-
-            CorsPolicy = corsPolicy;
+                AllowAnyHeader = true,
+                AllowAnyMethod = true,
+                AllowAnyOrigin = true
+            };
         }
 
-        public CorsPolicy CorsPolicy { get; private set; }
+        public CorsPolicy CorsPolicy { get; set; }
     }
 }

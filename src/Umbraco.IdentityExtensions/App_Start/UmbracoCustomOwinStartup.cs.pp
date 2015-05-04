@@ -66,13 +66,16 @@ namespace Umbraco.IdentityExtensions.CodeFiles
              * a custom CORS policy, example: 
              * 
              *      app.ConfigureBackOfficeTokenAuth(
-             *          new BackOfficeAuthServerProviderOptions(
-             *              new new CorsPolicy()
-             *               {
-             *                   AllowAnyHeader = true,
-             *                   AllowAnyMethod = true,
-             *                   Origins = { "http://mywebsite.com" }                
-             *               }));
+             *          new BackOfficeAuthServerProviderOptions()
+             *              {
+             *             		//Modify the CorsPolicy as required
+             *                  CorsPolicy = new CorsPolicy()
+             *                  {
+             *                      AllowAnyHeader = true,
+             *                      AllowAnyMethod = true,
+             *                      Origins = { "http://mywebsite.com" }                
+             *                  }
+             *              });
              */
         }
     }
