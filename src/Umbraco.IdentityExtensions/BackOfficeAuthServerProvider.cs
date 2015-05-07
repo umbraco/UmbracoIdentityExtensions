@@ -1,4 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Cors;
 using Microsoft.AspNet.Identity.Owin;
@@ -21,10 +26,41 @@ namespace Umbraco.IdentityExtensions
             _options = options;
         }
 
+        /// <summary>
+        /// Called at the final stage of a successful Token endpoint request. An application may implement this call in order to do any final 
+        ///             modification of the claims being used to issue access or refresh tokens. This call may also be used in order to add additional 
+        ///             response parameters to the Token endpoint's json response body.
+        /// </summary>
+        /// <param name="context">The context of the event carries information in and results out.</param>
+        /// <returns>
+        /// Task to enable asynchronous execution
+        /// </returns>        
+        public override Task MatchEndpoint(OAuthMatchEndpointContext context)
+        {
+            ProcessCors(context);
+
+            return base.MatchEndpoint(context);
+        }
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var userManager = context.OwinContext.GetUserManager<BackOfficeUserManager>();
+            var user = await userManager.FindAsync(context.UserName, context.Password);
 
+            if (user == null)
+            {
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
+            }
+
+            var identity = await userManager.ClaimsIdentityFactory.CreateAsync(userManager, user, context.Options.AuthenticationType);
+
+            context.Validated(identity);
+            
+        }
+
+        private void ProcessCors(OAuthMatchEndpointContext context)
+        {
             var accessControlRequestMethodHeaders = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod);
             var originHeaders = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.Origin);
             var accessControlRequestHeaders = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod);
@@ -41,27 +77,67 @@ namespace Umbraco.IdentityExtensions
                 foreach (var header in context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod))
                 {
                     corsRequest.AccessControlRequestHeaders.Add(header);
-                }    
+                }
             }
-            
+
             var engine = new CorsEngine();
-            var result = engine.EvaluatePolicy(corsRequest, _options.CorsPolicy);
 
-            if (result.IsValid)
+            if (corsRequest.IsPreflight)
             {
-                var user = await userManager.FindAsync(context.UserName, context.Password);
-
-                if (user == null)
+                try
                 {
-                    context.SetError("invalid_grant", "The user name or password is incorrect.");
+                    // Make sure Access-Control-Request-Method is valid.
+                    var test = new HttpMethod(corsRequest.AccessControlRequestMethod);
+                }
+                catch (ArgumentException)
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    //context.Response.Write("Access Control Request Method Cannot Be Null Or Empty");
+                    context.RequestCompleted();
+                    return;
+                }
+                catch (FormatException)
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    //context.Response.Write("Invalid Access Control Request Method");
+                    context.RequestCompleted();
                     return;
                 }
 
-                var identity = await userManager.ClaimsIdentityFactory.CreateAsync(userManager, user, context.Options.AuthenticationType);
+                var result = engine.EvaluatePolicy(corsRequest, _options.CorsPolicy);
 
-                context.Validated(identity);
+                if (!result.IsValid)
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    context.Response.Write(string.Join(" | ", result.ErrorMessages));
+                    context.RequestCompleted();
+                    return;                    
+                }
+
+                WriteCorsHeaders(result, context);
             }
-            
+            else
+            {
+                var result = engine.EvaluatePolicy(corsRequest, _options.CorsPolicy);
+
+                if (result.IsValid)
+                {
+                    WriteCorsHeaders(result, context);                    
+                }
+            }
+        }
+
+        private void WriteCorsHeaders(CorsResult result, OAuthMatchEndpointContext context)
+        {
+            var headers = result.ToResponseHeaders();
+
+            if (headers != null)
+            {
+                foreach (var header in headers)
+                {
+                    context.Response.Headers.Append(header.Key, header.Value);
+                }
+            }
         }
     }
 }

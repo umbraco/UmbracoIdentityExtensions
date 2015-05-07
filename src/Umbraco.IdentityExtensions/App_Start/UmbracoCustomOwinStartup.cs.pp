@@ -60,12 +60,12 @@ namespace Umbraco.IdentityExtensions.CodeFiles
              *             
              * By default the CORS policy is to allow all requests
              * 
-             *      app.ConfigureBackOfficeTokenAuth(new BackOfficeAuthServerProviderOptions());
+             *      app.UseUmbracoBackOfficeTokenAuth(new BackOfficeAuthServerProviderOptions());
              *      
              * If you want to have a custom CORS policy for the token server you can provide
              * a custom CORS policy, example: 
              * 
-             *      app.ConfigureBackOfficeTokenAuth(
+             *      app.UseUmbracoBackOfficeTokenAuth(
              *          new BackOfficeAuthServerProviderOptions()
              *              {
              *             		//Modify the CorsPolicy as required

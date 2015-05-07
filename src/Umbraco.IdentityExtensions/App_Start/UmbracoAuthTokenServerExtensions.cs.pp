@@ -40,14 +40,14 @@ namespace Umbraco.IdentityExtensions.CodeFiles
         ///       base.Configuration(app);
         ///   
         ///       //configure token auth
-        ///       app.ConfigureBackOfficeTokenAuth();
+        ///       app.UseUmbracoBackOfficeTokenAuth();
         ///   }
         /// 
         /// ]]>
         /// 
         /// Then be sure to read the details in UmbracoStandardOwinSetup on how to configure Owin to startup using it.
         /// </example>
-        public static void ConfigureBackOfficeTokenAuth(this IAppBuilder app, BackOfficeAuthServerProviderOptions backofficeAuthServerProviderOptions = null)
+        public static void UseUmbracoBackOfficeTokenAuth(this IAppBuilder app, BackOfficeAuthServerProviderOptions backofficeAuthServerProviderOptions = null)
         {
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
