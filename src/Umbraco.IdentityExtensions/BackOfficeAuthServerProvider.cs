@@ -35,11 +35,11 @@ namespace Umbraco.IdentityExtensions
         /// <returns>
         /// Task to enable asynchronous execution
         /// </returns>        
-        public override Task MatchEndpoint(OAuthMatchEndpointContext context)
+        public override Task ValidateTokenRequest(OAuthValidateTokenRequestContext context)
         {
             ProcessCors(context);
 
-            return base.MatchEndpoint(context);
+            return base.ValidateTokenRequest(context);
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -59,7 +59,7 @@ namespace Umbraco.IdentityExtensions
             
         }
 
-        private void ProcessCors(OAuthMatchEndpointContext context)
+        private void ProcessCors(OAuthValidateTokenRequestContext context)
         {
             var accessControlRequestMethodHeaders = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.AccessControlRequestMethod);
             var originHeaders = context.Request.Headers.GetCommaSeparatedValues(CorsConstants.Origin);
@@ -92,15 +92,15 @@ namespace Umbraco.IdentityExtensions
                 catch (ArgumentException)
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    //context.Response.Write("Access Control Request Method Cannot Be Null Or Empty");
-                    context.RequestCompleted();
+                    context.SetError("Access Control Request Method Cannot Be Null Or Empty");
+                    //context.RequestCompleted();
                     return;
                 }
                 catch (FormatException)
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    //context.Response.Write("Invalid Access Control Request Method");
-                    context.RequestCompleted();
+                    context.SetError("Invalid Access Control Request Method");
+                    //context.RequestCompleted();
                     return;
                 }
 
@@ -109,8 +109,8 @@ namespace Umbraco.IdentityExtensions
                 if (!result.IsValid)
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    context.Response.Write(string.Join(" | ", result.ErrorMessages));
-                    context.RequestCompleted();
+                    context.SetError(string.Join(" | ", result.ErrorMessages));
+                    //context.RequestCompleted();
                     return;                    
                 }
 
@@ -127,7 +127,7 @@ namespace Umbraco.IdentityExtensions
             }
         }
 
-        private void WriteCorsHeaders(CorsResult result, OAuthMatchEndpointContext context)
+        private void WriteCorsHeaders(CorsResult result, OAuthValidateTokenRequestContext context)
         {
             var headers = result.ToResponseHeaders();
 
