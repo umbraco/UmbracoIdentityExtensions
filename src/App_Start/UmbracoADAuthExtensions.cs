@@ -10,7 +10,6 @@ using Owin;
 using Umbraco.Core;
 using Umbraco.Web.Security.Identity;
 using Microsoft.Owin.Security.OpenIdConnect;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
 namespace $rootnamespace$
 {
