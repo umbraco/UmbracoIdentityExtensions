@@ -13,10 +13,10 @@ Umbraco extensibility code has been installed for ASP.Net Identity for Umbraco b
 The files have been installed into your App_Start folder if you have a Web Application project 
 or into App_Code if you have a Website project. 
 
-All of these files include lots of code comments, documentation & notes to assist with extending
-the ASP.Net Identity implementaion for back office users in Umbraco. For all 3rd party 
-ASP.Net providers, their dependencies will need to be manually installed. See comments in the
-following files for full details:
+ALL OF THESE FILES INCLUDE LOTS OF CODE COMMENTS, DOCUMENTATION AND NOTES
+to assist with extending the ASP.Net Identity implementaion for back office users in Umbraco. 
+For all 3rd party ASP.Net providers, their dependencies will need to be manually installed. 
+See comments in the following files for full details:
 
 * UmbracoStandardOwinStartup.cs 	Includes code snippets to enable 3rd party ASP.Net Identity 
 									providers to work with the Umbraco back office.

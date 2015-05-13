@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8">
-    <id>UmbracoCms.IdentityExtensions.ActiveDirectory</id>
+    <id>UmbracoCms.IdentityExtensions.AzureActiveDirectory</id>
     <version>1.0.0</version>
-    <title>Umbraco Extensibility with ASP.Net Identity for ActiveDirectory OAuth</title>
+    <title>Umbraco Extensibility with ASP.Net Identity for Azure ActiveDirectory OAuth</title>
     <authors>Umbraco HQ</authors>
     <owners>Umbraco HQ</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/umbraco/UmbracoIdentityExtensibility</projectUrl>
     <iconUrl>http://umbraco.com/media/357769/100px_transparent.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Installs files/classes to help with ASP.Net Identity extensibility for Umbraco back office and ActiveDirectory</description>
-    <summary>Installs classes to help with ASP.Net Identity extensibility for Umbraco and ActiveDirectory</summary>
+    <description>Installs files/classes to help with ASP.Net Identity extensibility for Umbraco back office and Azure ActiveDirectory</description>
+    <summary>Installs classes to help with ASP.Net Identity extensibility for Umbraco and Azure ActiveDirectory</summary>
     <language>en-US</language>
-    <tags>umbraco aspnet identity activedirectory</tags>
+    <tags>umbraco aspnet identity activedirectory azure</tags>
     <dependencies>
-      <dependency id="UmbracoCms.Identity" version="1.0.0-nightly2" />
+      <dependency id="UmbracoCms.IdentityExtensions" version="1.0.0-nightly0007" />
       <dependency id="Microsoft.Owin.Security.OpenIdConnect" version="[3.0.1,4.0.0)" />
-      <dependency id="Microsoft.IdentityModel.Clients.ActiveDirectory" version="[2.14.201151115,3.0.0)" />
     </dependencies>
   </metadata>
   <files>

@@ -106,7 +106,7 @@ Copy-Item "$BuildFolder\*.nuspec" -Destination $ReleaseFolder
 $NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensions.nuspec";
 & $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
 
-$NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensions.ActiveDirectory.nuspec";
+$NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensions.AzureActiveDirectory.nuspec";
 & $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
 
 $NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensions.Google.nuspec";

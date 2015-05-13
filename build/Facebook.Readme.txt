@@ -10,9 +10,10 @@
 Umbraco extensibility code has been installed for integrating Facebook 
 OAuth with ASP.Net Identity for Umbraco back office users
 			
-An extension method file has been installed: "~/App_Start/UmbracoFacebookAuthExtensions.cs"
-which contains the code, notes and documentation for integrating Facebook OAuth 
-providers for ASP.Net Identity.
+DOCUMENTATION, NOTES AND CODE have been installed to this file: 
+"~/App_Start/UmbracoFacebookAuthExtensions.cs"
+Please read for information on integrating Facebook OAuth providers 
+for ASP.Net Identity for the Umbraco back office.
 
 The usage of this extension method in your OWIN startup class will look like this:
 

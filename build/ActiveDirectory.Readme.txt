@@ -7,12 +7,13 @@
                                                    
 ----------------------------------------------------
 
-Umbraco extensibility code has been installed for integrating Active Directory
+Umbraco extensibility code has been installed for integrating Azure Active Directory
 OAuth with ASP.Net Identity for Umbraco back office users
 			
-An extension method file has been installed: "~/App_Start/UmbracoADAuthExtensions.cs"
-which contains the code, notes and documentation for integrating Active Directory OAuth 
-providers for ASP.Net Identity.
+DOCUMENTATION, NOTES AND CODE have been installed to this file: 
+"~/App_Start/UmbracoADAuthExtensions.cs"
+Please read for information on integrating Active Directory OAuth providers 
+for ASP.Net Identity for the Umbraco back office.
 
 The usage of this extension method in your OWIN startup class will look like this:
 
