@@ -11,11 +11,14 @@ namespace Umbraco.IdentityExtensions
         /// </summary>
         public BackOfficeAuthServerProviderOptions()
         {
+            //These are the defaults that we know work but people can modify them
+            // on startup if required.
             CorsPolicy = new CorsPolicy()
             {
                 AllowAnyHeader = true,
                 AllowAnyMethod = true,
-                AllowAnyOrigin = true
+                AllowAnyOrigin = true,
+                SupportsCredentials = true
             };
         }
 
