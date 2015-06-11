@@ -33,8 +33,8 @@ namespace Umbraco.IdentityExtensions.CodeFiles
 
             //Ensure owin is configured for Umbraco back office authentication
             app
-                .UseUmbracoBackOfficeCookieAuthentication()
-                .UseUmbracoBackOfficeExternalCookieAuthentication();
+                .UseUmbracoBackOfficeCookieAuthentication(ApplicationContext.Current)
+                .UseUmbracoBackOfficeExternalCookieAuthentication(ApplicationContext.Current);
 
             /* 
              * Configure external logins for the back office:
@@ -42,10 +42,10 @@ namespace Umbraco.IdentityExtensions.CodeFiles
              * Depending on the authentication sources you would like to enable, you will need to install 
              * certain Nuget packages. 
              * 
-             * For Google auth:             Install-Package UmbracoCms.Identity.Google
-             * For Facebook auth:           Install-Package UmbracoCms.Identity.Facebook
-             * For Microsoft auth:          Install-Package UmbracoCms.Identity.MicrosoftAccount
-             * For ActiveDirectory auth:    Install-Package UmbracoCms.Identity.ActiveDirectory
+             * For Google auth:					Install-Package UmbracoCms.IdentityExtensions.Google
+             * For Facebook auth:					Install-Package UmbracoCms.IdentityExtensions.Facebook
+             * For Microsoft auth:					Install-Package UmbracoCms.IdentityExtensions.Microsoft
+             * For Azure ActiveDirectory auth:		Install-Package UmbracoCms.IdentityExtensions.AzureActiveDirectory
              * 
              * There are many more providers such as Twitter, Yahoo, ActiveDirectory, etc... most information can
              * be found here: http://www.asp.net/web-api/overview/security/external-authentication-services
