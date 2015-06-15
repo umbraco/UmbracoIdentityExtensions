@@ -13,7 +13,7 @@ using Microsoft.Owin.Security.MicrosoftAccount;
 
 namespace $rootnamespace$
 {
-    public static class UmbracoGoogleAuthExtensions
+    public static class UmbracoMicrosoftAuthExtensions
     {
         ///  <summary>
         ///  Configure microsoft account sign-in
