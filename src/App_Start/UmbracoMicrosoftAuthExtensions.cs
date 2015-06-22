@@ -46,7 +46,8 @@ namespace $rootnamespace$
             {
                 ClientId = clientId,
                 ClientSecret = clientSecret,
-                SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType
+                SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType,
+                CallbackPath = new PathString("/umbraco-microsoft-signin")
             };
             msOptions.ForUmbracoBackOffice(style, icon);
             msOptions.Caption = caption;
