@@ -5,14 +5,14 @@ using Umbraco.Core.Security;
 using Umbraco.Web;
 using Umbraco.Web.Security.Identity;
 using Umbraco.IdentityExtensions;
-using Umbraco.IdentityExtensions.CodeFiles;
+using $rootnamespace$;
 
 //To use this startup class, change the appSetting value in the web.config called 
 // "owin:appStartup" to be "UmbracoStandardOwinStartup"
 
 [assembly: OwinStartup("UmbracoStandardOwinStartup", typeof(UmbracoStandardOwinStartup))]
 
-namespace Umbraco.IdentityExtensions.CodeFiles
+namespace $rootnamespace$
 {
     /// <summary>
     /// The standard way to configure OWIN for Umbraco

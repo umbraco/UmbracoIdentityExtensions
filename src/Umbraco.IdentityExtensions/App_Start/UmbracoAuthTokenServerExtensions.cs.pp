@@ -5,10 +5,9 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Umbraco.IdentityExtensions;
 using Umbraco.Web.Security.Identity;
+using $rootnamespace$;
 
-using Umbraco.IdentityExtensions.CodeFiles;
-
-namespace Umbraco.IdentityExtensions.CodeFiles
+namespace $rootnamespace$
 {
 
     /// <summary>

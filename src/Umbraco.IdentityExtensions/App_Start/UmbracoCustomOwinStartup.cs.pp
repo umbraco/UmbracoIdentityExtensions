@@ -4,14 +4,14 @@ using Umbraco.Core;
 using Umbraco.Core.Security;
 using Umbraco.Web.Security.Identity;
 using Umbraco.IdentityExtensions;
-using Umbraco.IdentityExtensions.CodeFiles;
+using $rootnamespace$;
 
 //To use this startup class, change the appSetting value in the web.config called 
 // "owin:appStartup" to be "CustomUmbracoOwinStartup"
 
 [assembly: OwinStartup("UmbracoCustomOwinStartup", typeof(UmbracoCustomOwinStartup))]
 
-namespace Umbraco.IdentityExtensions.CodeFiles
+namespace $rootnamespace$
 {
     /// <summary>
     /// A custom way to configure OWIN for Umbraco
@@ -25,12 +25,17 @@ namespace Umbraco.IdentityExtensions.CodeFiles
     {
         public void Configuration(IAppBuilder app)
         {
-            //Configure the Identity user manager for use with Umbraco Back office 
-            // (EXPERT: an overload accepts a custom BackOfficeUserStore implementation)
+            //Configure the Identity user manager for use with Umbraco Back office
+
+            // *** EXPERT: There are several overloads of this method that allow you to specify a custom UserStore or even a custom UserManager!            
             app.ConfigureUserManagerForUmbracoBackOffice(
                 ApplicationContext.Current,
-                MembershipProviderExtensions.GetUsersMembershipProvider().AsUmbracoMembershipProvider());
-
+				//The Umbraco membership provider needs to be specified in order to maintain backwards compatibility with the 
+				// user password formats. The membership provider is not used for authentication, if you require custom logic
+				// to validate the username/password against an external data source you can create create a custom UserManager
+				// and override CheckPasswordAsync
+                global::Umbraco.Core.Security.MembershipProviderExtensions.GetUsersMembershipProvider().AsUmbracoMembershipProvider());
+            
             //Ensure owin is configured for Umbraco back office authentication
             app
                 .UseUmbracoBackOfficeCookieAuthentication(ApplicationContext.Current)
