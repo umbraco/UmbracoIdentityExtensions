@@ -7,7 +7,7 @@ using Umbraco.IdentityExtensions;
 using $rootnamespace$;
 
 //To use this startup class, change the appSetting value in the web.config called 
-// "owin:appStartup" to be "CustomUmbracoOwinStartup"
+// "owin:appStartup" to be "UmbracoCustomOwinStartup"
 
 [assembly: OwinStartup("UmbracoCustomOwinStartup", typeof(UmbracoCustomOwinStartup))]
 
