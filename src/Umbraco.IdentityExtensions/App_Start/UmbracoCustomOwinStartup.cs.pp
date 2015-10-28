@@ -17,7 +17,7 @@ namespace $rootnamespace$
     /// A custom way to configure OWIN for Umbraco
     /// </summary>
     /// <remarks>
-    /// The startup type is specified in appSettings under owin:appStartup - change it to "CustomUmbracoStartup" to use this class
+    /// The startup type is specified in appSettings under owin:appStartup - change it to "UmbracoCustomOwinStartup" to use this class
     /// 
     /// This startup class would allow you to customize the Identity IUserStore and/or IUserManager for the Umbraco Backoffice
     /// </remarks>
