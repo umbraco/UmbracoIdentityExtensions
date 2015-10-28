@@ -14,7 +14,7 @@ The files have been installed into your App_Start folder if you have a Web Appli
 or into App_Code if you have a Website project. 
 
 ALL OF THESE FILES INCLUDE LOTS OF CODE COMMENTS, DOCUMENTATION AND NOTES
-to assist with extending the ASP.Net Identity implementaion for back office users in Umbraco. 
+to assist with extending the ASP.Net Identity implementation for back office users in Umbraco. 
 For all 3rd party ASP.Net providers, their dependencies will need to be manually installed. 
 See comments in the following files for full details:
 
