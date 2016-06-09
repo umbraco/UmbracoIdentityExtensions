@@ -1,10 +1,8 @@
 # Umbraco Identity Extensibility
 
-An Umbraco add-on package that enables easy extensibility points for ASP.Net Identity integration with Umbraco.
+An Umbraco add-on package that enables easy extensibility points for ASP.Net Identity integration with Umbraco including a simple OAuth token server and snippets on how to incorporate custom OAuth authentication providers for the back office.
 
 ## Installation
-
-*Coming soon!*
 
 This project contains a few packages:
 
@@ -16,7 +14,7 @@ This is the core package which installs Identity extensisibiliy points. It inclu
 
 #### Third party extensions
 
-All of these packages reference the above package: UmbracoCms.IdentityExtensions and are simple ways to enable third party auth extensions like Google and Facebook logins. Each package contains documentation and code files with documentation to show you how to integrate third party logins.
+All of these packages reference the above package: UmbracoCms.IdentityExtensions and are simple ways to enable third party OAuth  extensions like Google and Facebook logins. Each package contains documentation and code files with documentation to show you how to integrate third party logins.
 
     Install-Package UmbracoCms.IdentityExtensions.Google
   
