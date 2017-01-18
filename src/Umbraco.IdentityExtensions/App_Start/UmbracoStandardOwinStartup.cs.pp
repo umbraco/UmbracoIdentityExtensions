@@ -1,10 +1,12 @@
-﻿using Microsoft.Owin;
+using Microsoft.Owin;
 using Owin;
 using Umbraco.Core;
 using Umbraco.Core.Security;
 using Umbraco.Web;
 using Umbraco.Web.Security.Identity;
 using Umbraco.IdentityExtensions;
+using System.Web.Configuration;
+
 using $rootnamespace$;
 
 //To use this startup class, change the appSetting value in the web.config called 
