@@ -58,7 +58,7 @@ namespace $rootnamespace$
                 ClientId = clientId,
                 Authority = authority,
                 RedirectUri = postLoginRedirectUri
-						};
+            };
 
             adOptions.ForUmbracoBackOffice(style, icon);            
             adOptions.Caption = caption;
