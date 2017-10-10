@@ -56,8 +56,9 @@ namespace $rootnamespace$
             {
                 SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType,
                 ClientId = clientId,
-                Authority = authority
-            };
+                Authority = authority,
+                RedirectUri = postLoginRedirectUri
+						};
 
             adOptions.ForUmbracoBackOffice(style, icon);            
             adOptions.Caption = caption;
