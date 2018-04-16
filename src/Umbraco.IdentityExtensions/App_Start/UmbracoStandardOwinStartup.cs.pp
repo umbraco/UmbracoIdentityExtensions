@@ -18,7 +18,7 @@ namespace $rootnamespace$
     /// The standard way to configure OWIN for Umbraco
     /// </summary>
     /// <remarks>
-    /// The startup type is specified in appSettings under owin:appStartup - change it to "StandardUmbracoStartup" to use this class
+    /// The startup type is specified in appSettings under owin:appStartup - change it to "UmbracoStandardOwinStartup" to use this class
     /// </remarks>
     public class UmbracoStandardOwinStartup : UmbracoDefaultOwinStartup
     {
