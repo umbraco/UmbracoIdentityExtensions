@@ -13,7 +13,9 @@ OAuth with ASP.Net Identity for Umbraco back office users
 DOCUMENTATION, NOTES AND CODE have been installed to this file: 
 "~/App_Start/UmbracoGoogleAuthExtensions.cs"
 Please read for information on integrating Google OAuth providers 
-for ASP.Net Identity for the Umbraco back office.
+for ASP.Net Identity for the Umbraco back office. For Google OAuth to work
+you must enable the Google+ API in the Google developer console for your
+site/project: https://console.developers.google.com/apis/api/plus.googleapis.com
 
 The usage of this extension method in your OWIN startup class will look like this:
 
