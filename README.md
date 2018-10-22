@@ -35,3 +35,9 @@ _Readme: https://github.com/umbraco/UmbracoIdentityExtensions/blob/master/build/
 _Readme: https://github.com/umbraco/UmbracoIdentityExtensions/blob/master/build/ActiveDirectory.Readme.txt_
   
 What about [Identity Server](https://github.com/IdentityServer)? Yes that will of course work too, [here's a great community blog post](https://yuriburger.net/2017/04/26/login-to-umbraco-backoffice-using-identityserver4/) about setting up that integration. 
+
+## License
+
+Copyright &copy; 2015 Umbraco HQ
+
+Licensed under the [MIT License](LICENSE.md)
