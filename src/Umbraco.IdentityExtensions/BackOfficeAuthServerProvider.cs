@@ -93,14 +93,12 @@ namespace Umbraco.IdentityExtensions
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     context.SetError("Access Control Request Method Cannot Be Null Or Empty");
-                    //context.RequestCompleted();
                     return;
                 }
                 catch (FormatException)
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     context.SetError("Invalid Access Control Request Method");
-                    //context.RequestCompleted();
                     return;
                 }
 
@@ -110,7 +108,6 @@ namespace Umbraco.IdentityExtensions
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     context.SetError(string.Join(" | ", result.ErrorMessages));
-                    //context.RequestCompleted();
                     return;                    
                 }
 
