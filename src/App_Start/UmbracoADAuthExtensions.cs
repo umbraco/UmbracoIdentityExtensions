@@ -20,8 +20,12 @@ namespace $rootnamespace$
         ///  Configure ActiveDirectory sign-in
         ///  </summary>
         ///  <param name="app"></param>
-        ///  <param name="tenant"></param>
-        ///  <param name="clientId"></param>
+        ///  <param name="tenant">
+        ///  Your tenant ID i.e. YOURDIRECTORYNAME.onmicrosoft.com
+        ///  </param>
+        ///  <param name="clientId">
+        ///  Also known as the Application Id in the azure portal
+        ///  </param>
         ///  <param name="postLoginRedirectUri">
         ///  The URL that will be redirected to after login is successful, example: http://mydomain.com/umbraco/;
         ///  </param>
