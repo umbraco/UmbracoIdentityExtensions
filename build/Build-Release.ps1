@@ -16,7 +16,7 @@ $SolutionRoot = Join-Path -Path $RepoRoot "src";
 #trace
 "Solution Root: $SolutionRoot"
 
-$MSBuild = "$Env:SYSTEMROOT\Microsoft.NET\Framework\v4.0.30319\msbuild.exe";
+$MSBuild = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\msbuild.exe";
 
 # Make sure we don't have a release folder for this version already
 $BuildFolder = Join-Path -Path $RepoRoot -ChildPath "build";
@@ -48,7 +48,7 @@ $AssemblyInfoPath = Join-Path -Path $SolutionRoot -ChildPath "Umbraco.IdentityEx
 	-replace "(?<=AssemblyInformationalVersion\(`")[.\w-]*(?=`"\))", "$ReleaseVersionNumber$PreReleaseName" |
 	sc -Path $AssemblyInfoPath -Encoding UTF8;
 # Set the copyright
-$Copyright = "Copyright © Umbraco " + (Get-Date).year;
+$Copyright = "Copyright ï¿½ Umbraco " + (Get-Date).year;
 (gc -Path $AssemblyInfoPath) `
 	-replace "(?<=AssemblyCopyright\(`").*(?=`"\))", $Copyright |
 	sc -Path $AssemblyInfoPath -Encoding UTF8;
