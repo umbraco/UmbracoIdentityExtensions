@@ -15,13 +15,14 @@
     <language>en-US</language>
     <tags>umbraco aspnet identity</tags>
     <dependencies>
-      <dependency id="UmbracoCms.Core" version="[7.3.0, 8.0.0)" />
+      <dependency id="UmbracoCms.Core" version="[8.0.0, 9.0.0)" />
+      <dependency id="UmbracoCms.Web" version="[8.0.0, 9.0.0)" />
       <dependency id="Microsoft.AspNet.Cors" version="[5.2.3, 6.0.0)" />      
     </dependencies>
   </metadata>
   <files>
-    <file src="Umbraco.IdentityExtensions\bin\*.dll" target="lib\net45" />
-    <file src="Umbraco.IdentityExtensions\bin\*.pdb" target="lib\net45" />
+    <file src="Umbraco.IdentityExtensions\bin\*.dll" target="lib\net472" />
+    <file src="Umbraco.IdentityExtensions\bin\*.pdb" target="lib\net472" />
     <file src="Umbraco.IdentityExtensions\App_Start\UmbracoCustomOwinStartup.cs.pp" target="content\App_Start" />
     <file src="Umbraco.IdentityExtensions\App_Start\UmbracoStandardOwinStartup.cs.pp" target="content\App_Start" />
     <file src="Umbraco.IdentityExtensions\App_Start\UmbracoAuthTokenServerExtensions.cs.pp" target="content\App_Start" />

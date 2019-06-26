@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -8,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Cors;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.OAuth;
-using Umbraco.Core.Security;
+using Umbraco.Web.Security;
 
 namespace Umbraco.IdentityExtensions
 {

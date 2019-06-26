@@ -57,18 +57,18 @@ $Copyright = "Copyright © Umbraco " + (Get-Date).year;
 $SolutionPath = Join-Path -Path $SolutionRoot -ChildPath "Umbraco.IdentityExtensions.sln";
 
 # clean sln for all deploys
-& $MSBuild "$SolutionPath" /p:Configuration=Release /maxcpucount /t:Clean
-if (-not $?)
-{
-	throw "The MSBuild process returned an error code."
-}
+#& $MSBuild "$SolutionPath" /p:Configuration=Release /maxcpucount /t:Clean
+#if (-not $?)
+#{
+#	throw "The MSBuild process returned an error code."
+#}
 
 #build
-& $MSBuild "$SolutionPath" /p:Configuration=Release /maxcpucount
-if (-not $?)
-{
-	throw "The MSBuild process returned an error code."
-}
+#& $MSBuild "$SolutionPath" /p:Configuration=Release /maxcpucount
+#if (-not $?)
+#{
+#	throw "The MSBuild process returned an error code."
+#}
 
 #Copy DLLs and code files to output dir
 $IdentityExtensionsReleaseFolder = Join-Path -Path $ReleaseFolder -ChildPath "Umbraco.IdentityExtensions";

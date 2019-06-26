@@ -3,7 +3,7 @@ using Owin;
 using Umbraco.Core;
 using Umbraco.Core.Security;
 using Umbraco.Web;
-using Umbraco.Web.Security.Identity;
+using Umbraco.Web.Security;
 using Umbraco.IdentityExtensions;
 using $rootnamespace$;
 

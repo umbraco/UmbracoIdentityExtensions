@@ -8,7 +8,7 @@ using System.Web;
 using Microsoft.Owin;
 using Owin;
 using Umbraco.Core;
-using Umbraco.Web.Security.Identity;
+using Umbraco.Web.Security;
 using Microsoft.Owin.Security.Facebook;
 
 namespace $rootnamespace$

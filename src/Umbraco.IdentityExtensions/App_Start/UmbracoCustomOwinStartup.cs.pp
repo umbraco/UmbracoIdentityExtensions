@@ -2,7 +2,7 @@
 using Owin;
 using Umbraco.Core;
 using Umbraco.Core.Security;
-using Umbraco.Web.Security.Identity;
+using Umbraco.Web.Security;
 using Umbraco.IdentityExtensions;
 using $rootnamespace$;
 
@@ -28,18 +28,7 @@ namespace $rootnamespace$
             //Configure the Identity user manager for use with Umbraco Back office
 
             // *** EXPERT: There are several overloads of this method that allow you to specify a custom UserStore or even a custom UserManager!            
-            app.ConfigureUserManagerForUmbracoBackOffice(
-                ApplicationContext.Current,
-				//The Umbraco membership provider needs to be specified in order to maintain backwards compatibility with the 
-				// user password formats. The membership provider is not used for authentication, if you require custom logic
-				// to validate the username/password against an external data source you can create create a custom UserManager
-				// and override CheckPasswordAsync
-                global::Umbraco.Core.Security.MembershipProviderExtensions.GetUsersMembershipProvider().AsUmbracoMembershipProvider());
-            
-            //Ensure owin is configured for Umbraco back office authentication
-            app
-                .UseUmbracoBackOfficeCookieAuthentication(ApplicationContext.Current)
-                .UseUmbracoBackOfficeExternalCookieAuthentication(ApplicationContext.Current);
+			// Still need to port this example from V7
 
             /* 
              * Configure external logins for the back office:

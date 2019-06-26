@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Cors;
-
+﻿using System.Web.Cors;
 
 namespace Umbraco.IdentityExtensions
 {
