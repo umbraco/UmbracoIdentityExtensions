@@ -4,6 +4,9 @@ using Umbraco.Core;
 using Umbraco.Core.Security;
 using Umbraco.Web.Security;
 using Umbraco.IdentityExtensions;
+using Umbraco.Web.Composing;
+using Umbraco.Core.Configuration.UmbracoSettings;
+using Umbraco.Core.Configuration;
 using $rootnamespace$;
 
 //To use this startup class, change the appSetting value in the web.config called 
