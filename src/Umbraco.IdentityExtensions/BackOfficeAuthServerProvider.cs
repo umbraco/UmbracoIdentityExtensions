@@ -7,7 +7,6 @@ using System.Web.Cors;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Umbraco.Web.Security;
-using Umbraco.Web.Security;
 
 namespace Umbraco.IdentityExtensions
 {
