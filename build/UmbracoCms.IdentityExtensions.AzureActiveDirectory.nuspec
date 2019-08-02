@@ -16,7 +16,7 @@
 		<tags>umbraco aspnet identity activedirectory azure</tags>
     <dependencies>
       <group targetFramework="net472">
-        <dependency id="UmbracoCms.IdentityExtensions" version="1.0.0" />
+        <dependency id="UmbracoCms.IdentityExtensions" version="2.0.0" />
         <dependency id="Microsoft.Owin.Security.OpenIdConnect" version="[3.0.1,4.0.0)" />
         <dependency id="Microsoft.IdentityModel.Protocol.Extensions" version="[1.0.2.206221351,2.0.0)" />
         <dependency id="System.IdentityModel.Tokens.Jwt" version="[4.0.2.206221351,5.0.0)" />
