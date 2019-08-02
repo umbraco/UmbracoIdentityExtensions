@@ -15,8 +15,10 @@
     <language>en-US</language>
     <tags>umbraco aspnet identity</tags>
     <dependencies>
-      <dependency id="UmbracoCms.IdentityExtensions" version="1.0.0" />
-      <dependency id="Microsoft.Owin.Security.Google" version="[3.0.1, 4.0.0)" />
+      <group targetFramework="net472">
+        <dependency id="UmbracoCms.IdentityExtensions" version="1.0.0" />
+        <dependency id="Microsoft.Owin.Security.Google" version="[3.0.1, 4.0.0)" />
+      </group>
     </dependencies>
   </metadata>
   <files>

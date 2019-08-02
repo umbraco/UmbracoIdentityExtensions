@@ -195,3 +195,5 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 build/nuget.exe
+/build/tmp/*
+/build/vswhere.exe
