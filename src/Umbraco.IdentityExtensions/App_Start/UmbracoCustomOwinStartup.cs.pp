@@ -2,7 +2,11 @@
 using Owin;
 using Umbraco.Core;
 using Umbraco.Core.Security;
+using Umbraco.Web.Security;
 using Umbraco.IdentityExtensions;
+using Umbraco.Web.Composing;
+using Umbraco.Core.Configuration.UmbracoSettings;
+using Umbraco.Core.Configuration;
 using $rootnamespace$;
 
 //To use this startup class, change the appSetting value in the web.config called 
@@ -27,7 +31,6 @@ namespace $rootnamespace$
         protected IUmbracoSettingsSection UmbracoSettings => Current.Configs.Settings();
         protected IRuntimeState RuntimeState => Current.RuntimeState;
         protected ServiceContext Services => Current.Services;
-        //protected UmbracoMapper Mapper => Current.Mapper;
 
         public void Configuration(IAppBuilder app)
         {
@@ -43,11 +46,12 @@ namespace $rootnamespace$
                 // to validate the username/password against an external data source you can create create a custom UserManager
                 // and override CheckPasswordAsync
                 global::Umbraco.Core.Security.MembershipProviderExtensions.GetUsersMembershipProvider().AsUmbracoMembershipProvider());
-            
+
             //Ensure owin is configured for Umbraco back office authentication
             app
-                .UseUmbracoBackOfficeCookieAuthentication(UmbracoContextAccessor, RuntimeState, Services.UserService, GlobalSettings, UmbracoSettings.Security, PipelineStage.Authenticate)
-                .UseUmbracoBackOfficeExternalCookieAuthentication(UmbracoContextAccessor, RuntimeState, GlobalSettings, PipelineStage.Authenticate);
+                .UseUmbracoBackOfficeCookieAuthentication(UmbracoContextAccessor, RuntimeState, Services.UserService, GlobalSettings, UmbracoSettings.Security)
+                .UseUmbracoBackOfficeExternalCookieAuthentication(UmbracoContextAccessor, RuntimeState, GlobalSettings);
+
 
             /* 
              * Configure external logins for the back office:
