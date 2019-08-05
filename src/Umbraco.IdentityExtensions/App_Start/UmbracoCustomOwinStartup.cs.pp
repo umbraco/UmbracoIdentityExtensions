@@ -1,12 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using Umbraco.Core;
 using Umbraco.Core.Security;
+using Umbraco.Web;
 using Umbraco.Web.Security;
-using Umbraco.IdentityExtensions;
-using Umbraco.Web.Composing;
-using Umbraco.Core.Configuration.UmbracoSettings;
-using Umbraco.Core.Configuration;
 using $rootnamespace$;
 
 //To use this startup class, change the appSetting value in the web.config called 
@@ -20,25 +16,27 @@ namespace $rootnamespace$
     /// A custom way to configure OWIN for Umbraco
     /// </summary>
     /// <remarks>
-    /// The startup type is specified in appSettings under owin:appStartup - change it to "UmbracoCustomOwinStartup" to use this class
-    /// 
-    /// This startup class would allow you to customize the Identity IUserStore and/or IUserManager for the Umbraco Backoffice
+    /// <para>
+    /// *** EXPERT *** 
+    /// </para>
+    /// </para>
+    /// The startup type is specified in appSettings under owin:appStartup - change it to "UmbracoCustomOwinStartup" to use this class.
+    /// This startup class would allows you to customize all aspects of the Umbraco OWIN startup/configuration pipeline.
+    /// This example shows the common overloaded methods but there are others if you need to entirely change the OWIN startup/configuration pipeline.
+    /// </para>
     /// </remarks>
-    public class UmbracoCustomOwinStartup
+    public class UmbracoCustomOwinStartup : UmbracoDefaultOwinStartup
     {
-        protected IUmbracoContextAccessor UmbracoContextAccessor => Current.UmbracoContextAccessor;
-        protected IGlobalSettings GlobalSettings => Current.Configs.Global();
-        protected IUmbracoSettingsSection UmbracoSettings => Current.Configs.Settings();
-        protected IRuntimeState RuntimeState => Current.RuntimeState;
-        protected ServiceContext Services => Current.Services;
-
-        public void Configuration(IAppBuilder app)
+        /// <summary>
+        /// Configures the <see cref="BackOfficeUserManager"/> for Umbraco
+        /// </summary>
+        /// <param name="app"></param>
+        protected override void ConfigureUmbracoUserManager(IAppBuilder app)
         {
-            //Configure the Identity user manager for use with Umbraco Back office
-
-            // *** EXPERT: There are several overloads of this method that allow you to specify a custom UserStore or even a custom UserManager!            
+            // There are several overloads of this method that allow you to customize the BackOfficeUserManager or even custom BackOfficeUserStore.
             app.ConfigureUserManagerForUmbracoBackOffice(
                 Services,
+                Mapper,
                 UmbracoSettings.Content,
                 GlobalSettings,
                 //The Umbraco membership provider needs to be specified in order to maintain backwards compatibility with the 
@@ -46,12 +44,18 @@ namespace $rootnamespace$
                 // to validate the username/password against an external data source you can create create a custom UserManager
                 // and override CheckPasswordAsync
                 global::Umbraco.Core.Security.MembershipProviderExtensions.GetUsersMembershipProvider().AsUmbracoMembershipProvider());
+        }
 
-            //Ensure owin is configured for Umbraco back office authentication
+        /// <summary>
+        /// Configures the back office authentication for Umbraco
+        /// </summary>
+        /// <param name="app"></param>
+        protected override void ConfigureUmbracoAuthentication(IAppBuilder app)
+        {
             app
-                .UseUmbracoBackOfficeCookieAuthentication(UmbracoContextAccessor, RuntimeState, Services.UserService, GlobalSettings, UmbracoSettings.Security)
-                .UseUmbracoBackOfficeExternalCookieAuthentication(UmbracoContextAccessor, RuntimeState, GlobalSettings);
-
+                .UseUmbracoBackOfficeCookieAuthentication(UmbracoContextAccessor, RuntimeState, Services.UserService, GlobalSettings, UmbracoSettings.Security, PipelineStage.Authenticate)
+                .UseUmbracoBackOfficeExternalCookieAuthentication(UmbracoContextAccessor, RuntimeState, GlobalSettings, PipelineStage.Authenticate)
+                .UseUmbracoPreviewAuthentication(UmbracoContextAccessor, RuntimeState, GlobalSettings, UmbracoSettings.Security, PipelineStage.Authorize);
 
             /* 
              * Configure external logins for the back office:
@@ -94,5 +98,6 @@ namespace $rootnamespace$
              *              });
              */
         }
+
     }
 }

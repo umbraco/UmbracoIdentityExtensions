@@ -25,9 +25,6 @@ namespace $rootnamespace$
         /// <param name="style"></param>
         /// <param name="icon"></param>
         /// <remarks>
-        ///  
-        ///  Nuget installation:
-        ///      Microsoft.Owin.Security.Facebook
         /// 
         ///  Facebook account documentation for ASP.Net Identity can be found:
         ///  

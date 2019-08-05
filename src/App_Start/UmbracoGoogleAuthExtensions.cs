@@ -25,9 +25,6 @@ namespace $rootnamespace$
         /// <param name="style"></param>
         /// <param name="icon"></param>
         /// <remarks>
-        ///  
-        ///  Nuget installation:
-        ///      Microsoft.Owin.Security.Google
         /// 
         ///  Google account documentation for ASP.Net Identity can be found:
         ///  
@@ -39,7 +36,7 @@ namespace $rootnamespace$
         ///  
         ///  </remarks>
         public static void ConfigureBackOfficeGoogleAuth(this IAppBuilder app, string clientId, string clientSecret,
-            string caption = "Google", string style = "btn-google-plus", string icon = "fa-google-plus")
+            string caption = "Google", string style = "btn-google", string icon = "fa-google")
         {
             var googleOptions = new GoogleOAuth2AuthenticationOptions
             {
