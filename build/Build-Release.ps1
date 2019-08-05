@@ -129,6 +129,9 @@ $NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensio
 $NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensions.Facebook.nuspec";
 & $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
 
+$NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensions.Microsoft.nuspec";
+& $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
+
 ""
 "Build $ReleaseVersionNumber$PreReleaseName is done!"
 

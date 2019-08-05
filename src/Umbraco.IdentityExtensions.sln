@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{
 		App_Start\UmbracoADAuthExtensions.cs = App_Start\UmbracoADAuthExtensions.cs
 		App_Start\UmbracoFacebookAuthExtensions.cs = App_Start\UmbracoFacebookAuthExtensions.cs
 		App_Start\UmbracoGoogleAuthExtensions.cs = App_Start\UmbracoGoogleAuthExtensions.cs
+		App_Start\UmbracoMicrosoftAuthExtensions.cs = App_Start\UmbracoMicrosoftAuthExtensions.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{596116B3-3B38-481C-9442-643AF4CA1071}"
@@ -24,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{596116B3
 		..\build\UmbracoCms.IdentityExtensions.AzureActiveDirectory.nuspec = ..\build\UmbracoCms.IdentityExtensions.AzureActiveDirectory.nuspec
 		..\build\UmbracoCms.IdentityExtensions.Facebook.nuspec = ..\build\UmbracoCms.IdentityExtensions.Facebook.nuspec
 		..\build\UmbracoCms.IdentityExtensions.Google.nuspec = ..\build\UmbracoCms.IdentityExtensions.Google.nuspec
+		..\build\UmbracoCms.IdentityExtensions.Microsoft.nuspec = ..\build\UmbracoCms.IdentityExtensions.Microsoft.nuspec
 		..\build\UmbracoCms.IdentityExtensions.nuspec = ..\build\UmbracoCms.IdentityExtensions.nuspec
 	EndProjectSection
 EndProject

@@ -41,8 +41,10 @@ namespace $rootnamespace$
         /// <param name="style"></param>
         /// <param name="icon"></param>
         /// <remarks>
+        /// 
         ///  ActiveDirectory account documentation for ASP.Net Identity can be found:
         ///  https://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNet
+        /// 
         ///  </remarks>
         public static void ConfigureBackOfficeAzureActiveDirectoryAuth(this IAppBuilder app, 
             string tenant, string clientId, string postLoginRedirectUri, Guid issuerId,
