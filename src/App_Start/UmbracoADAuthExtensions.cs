@@ -21,7 +21,7 @@ namespace $rootnamespace$
         ///  </summary>
         ///  <param name="app"></param>
         ///  <param name="tenant">
-        ///  Your tenant ID i.e. YOURDIRECTORYNAME.onmicrosoft.com
+        ///  Your tenant ID i.e. YOURDIRECTORYNAME.onmicrosoft.com OR this could be the GUID of your tenant ID
         ///  </param>
         ///  <param name="clientId">
         ///  Also known as the Application Id in the azure portal
@@ -31,10 +31,7 @@ namespace $rootnamespace$
         ///  </param>
         ///  <param name="issuerId">
         /// 
-        ///  This is the "Issuer Id" for you Azure AD application. This a GUID value and can be found
-        ///  in the Azure portal when viewing your configured application and clicking on 'View endpoints'
-        ///  which will list all of the API endpoints. Each endpoint will contain a GUID value, this is
-        ///  the Issuer Id which must be used for this value.        
+        ///  This is the "Issuer Id" for you Azure AD application. This is a GUID value of your tenant ID.
         /// 
         ///  If this value is not set correctly then accounts won't be able to be detected 
         ///  for un-linking in the back office. 

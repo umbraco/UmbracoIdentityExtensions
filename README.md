@@ -24,11 +24,7 @@ _Readme: https://github.com/umbraco/UmbracoIdentityExtensions/blob/master/build/
 
     Install-Package UmbracoCms.IdentityExtensions.Facebook
     
-_Readme: https://github.com/umbraco/UmbracoIdentityExtensions/blob/master/build/Facebook.Readme.txt_
-  
-    Install-Package UmbracoCms.IdentityExtensions.Microsoft
-  
-_Readme: https://github.com/umbraco/UmbracoIdentityExtensions/blob/master/build/Microsoft.Readme.txt_
+_Readme: https://github.com/umbraco/UmbracoIdentityExtensions/blob/master/build/Facebook.Readme.txt_     
 
     Install-Package UmbracoCms.IdentityExtensions.AzureActiveDirectory
     

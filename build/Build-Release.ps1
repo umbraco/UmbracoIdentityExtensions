@@ -16,11 +16,9 @@ $SolutionRoot = Join-Path -Path $RepoRoot "src";
 #trace
 "Solution Root: $SolutionRoot"
 
-$MSBuild = "$Env:SYSTEMROOT\Microsoft.NET\Framework\v4.0.30319\msbuild.exe";
-
 # Make sure we don't have a release folder for this version already
 $BuildFolder = Join-Path -Path $RepoRoot -ChildPath "build";
-$ReleaseFolder = Join-Path -Path $BuildFolder -ChildPath "Releases\v$ReleaseVersionNumber$PreReleaseName";
+$ReleaseFolder = Join-Path -Path $BuildFolder -ChildPath "Release";
 if ((Get-Item $ReleaseFolder -ErrorAction SilentlyContinue) -ne $null)
 {
 	Write-Warning "$ReleaseFolder already exists on your local machine. It will now be deleted."
@@ -32,12 +30,28 @@ New-Item $ReleaseFolder -Type directory
 $NuGet = "$BuildFolder\nuget.exe"
 $FileExists = Test-Path $NuGet 
 If ($FileExists -eq $False) {
-	$SourceNugetExe = "http://nuget.org/nuget.exe"
+	Write-Host "Retrieving nuget.exe..."
+	$SourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 	Invoke-WebRequest $SourceNugetExe -OutFile $NuGet
 }
 
-#trace
-"Release path: $ReleaseFolder"
+# ensure we have vswhere
+New-Item "$BuildFolder\vswhere" -type directory -force
+$vswhere = "$BuildFolder\vswhere.exe"
+if (-not (test-path $vswhere))
+{
+	Write-Host "Download VsWhere..."
+	$path = "$BuildFolder\tmp"
+	&$nuget install vswhere -OutputDirectory $path -Verbosity quiet
+	$dir = ls "$path\vswhere.*" | sort -property Name -descending | select -first 1
+	$file = ls -path "$dir" -name vswhere.exe -recurse
+	mv "$dir\$file" $vswhere   
+}
+
+$MSBuild = &$vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+if (-not (test-path $MSBuild)) {
+	throw "MSBuild not found!"
+}
 
 # Set the version number in SolutionInfo.cs
 $AssemblyInfoPath = Join-Path -Path $SolutionRoot -ChildPath "Umbraco.IdentityExtensions\Properties\AssemblyInfo.cs"
@@ -48,7 +62,7 @@ $AssemblyInfoPath = Join-Path -Path $SolutionRoot -ChildPath "Umbraco.IdentityEx
 	-replace "(?<=AssemblyInformationalVersion\(`")[.\w-]*(?=`"\))", "$ReleaseVersionNumber$PreReleaseName" |
 	sc -Path $AssemblyInfoPath -Encoding UTF8;
 # Set the copyright
-$Copyright = "Copyright © Umbraco " + (Get-Date).year;
+$Copyright = "Copyright " + [char]0x00A9 + " Umbraco " + (Get-Date).year
 (gc -Path $AssemblyInfoPath) `
 	-replace "(?<=AssemblyCopyright\(`").*(?=`"\))", $Copyright |
 	sc -Path $AssemblyInfoPath -Encoding UTF8;
@@ -113,9 +127,6 @@ $NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensio
 & $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
 
 $NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensions.Facebook.nuspec";
-& $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
-
-$NuSpec = Join-Path -Path $ReleaseFolder -ChildPath "UmbracoCms.IdentityExtensions.Microsoft.nuspec";
 & $NuGet pack $NuSpec -OutputDirectory $ReleaseFolder -Version $ReleaseVersionNumber$PreReleaseName
 
 ""
