@@ -24,9 +24,6 @@ namespace $rootnamespace$
         /// <param name="app"></param>
         protected override void ConfigureUmbracoAuthentication(IAppBuilder app)
         {
-            // Must call the base implementation to configure the default back office authentication config.
-            base.ConfigureUmbracoAuthentication(app);
-
             /* 
             * Configure external logins for the back office:
             * 
@@ -67,6 +64,11 @@ namespace $rootnamespace$
              *                  }
              *              });
              */
+
+            // Must call the base implementation to configure the default back office authentication config.
+            // This must be done last.
+            base.ConfigureUmbracoAuthentication(app);
+
         }
     }
 }
