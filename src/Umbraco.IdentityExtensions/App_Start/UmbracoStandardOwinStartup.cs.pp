@@ -24,10 +24,7 @@ namespace $rootnamespace$
     {
         public override void Configuration(IAppBuilder app)
         {
-            //ensure the default options are configured
-            base.Configuration(app);
-
-            /* 
+        /* 
              * Configure external logins for the back office:
              * 
              * Depending on the authentication sources you would like to enable, you will need to install 
@@ -46,7 +43,7 @@ namespace $rootnamespace$
              *  
              */
 
-            /*
+             /*
              * To configure a simple auth token server for the back office:
              *             
              * By default the CORS policy is to allow all requests
@@ -68,6 +65,9 @@ namespace $rootnamespace$
              *                  }
              *              });
              */
+
+            //ensure the default options are configured. Do this last.
+            base.Configuration(app);
 
         }
     }
