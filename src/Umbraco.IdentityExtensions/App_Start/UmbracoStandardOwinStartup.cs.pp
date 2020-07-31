@@ -1,6 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using Umbraco.Web;
+using Umbraco.Web.Security;
 using $rootnamespace$;
 
 //To use this startup class, change the appSetting value in the web.config called 
@@ -51,6 +52,8 @@ namespace $rootnamespace$
              * By default the CORS policy is to allow all requests
              * 
              *      app.UseUmbracoBackOfficeTokenAuth(new BackOfficeAuthServerProviderOptions());
+             *      // you have to configure preview authentication after the token server
+             *      app.UseUmbracoPreviewAuthentication(UmbracoContextAccessor, RuntimeState, GlobalSettings, UmbracoSettings.Security, PipelineStage.Authorize);
              *      
              * If you want to have a custom CORS policy for the token server you can provide
              * a custom CORS policy, example: 
@@ -67,6 +70,8 @@ namespace $rootnamespace$
              *                  }
              *              });
              */
+
+
         }
     }
 }
