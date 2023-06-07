@@ -48,7 +48,7 @@ namespace $rootnamespace$
         ///  https://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNet
         ///  </remarks>
         public static void ConfigureBackOfficeAzureActiveDirectoryAuth(this IAppBuilder app, 
-            string tenant, string clientId, string postLoginRedirectUri, Guid issuerId,
+            string tenant, string clientId, string clientSecret, string postLoginRedirectUri, Guid issuerId,
             string caption = "Active Directory", string style = "btn-microsoft", string icon = "fa-windows")
         {         
             var authority = string.Format(
@@ -60,6 +60,7 @@ namespace $rootnamespace$
             {
                 SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType,
                 ClientId = clientId,
+                ClientSecret=clientSecret,
                 Authority = authority,
                 RedirectUri = postLoginRedirectUri
             };
@@ -72,7 +73,17 @@ namespace $rootnamespace$
                 "https://sts.windows.net/{0}/",
                 issuerId);
             app.UseOpenIdConnectAuthentication(adOptions);            
-        }    
+        }
+
+        [Obsolete("Usage of clientSecret is recommended!")]
+        public static void ConfigureBackOfficeAzureActiveDirectoryAuth(this IAppBuilder app, 
+            string tenant, string clientId,string clientSecret=null, string postLoginRedirectUri, Guid issuerId,
+            string caption = "Active Directory", string style = "btn-microsoft", string icon = "fa-windows")
+        {         
+            ConfigureBackOfficeAzureActiveDirectoryAuth(app,tenant,clientId,clientSecret,
+            postLoginRedirectUri,issuerId,
+            caption,style,icon);
+        }       
 
     }
     
