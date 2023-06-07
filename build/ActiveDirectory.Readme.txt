@@ -1,4 +1,4 @@
-  _    _ __  __ ____  _____           _____ ____  
+_    _ __  __ ____  _____           _____ ____  
  | |  | |  \/  |  _ \|  __ \    /\   / ____/ __ \ 
  | |  | | \  / | |_) | |__) |  /  \ | |   | |  | |
  | |  | | |\/| |  _ <|  _  /  / /\ \| |   | |  | |
@@ -20,6 +20,7 @@ The usage of this extension method in your OWIN startup class will look like thi
             app.ConfigureBackOfficeAzureActiveDirectoryAuth(
               "YOUR_TENANT",
               "YOUR_CLIENT_ID",
+              "YOUR_CLIENT_SECRET",
               "YOUR_POST_LOGIN_REDIRECT_URL",
               new System.Guid("ISSUER_ID"));
 
