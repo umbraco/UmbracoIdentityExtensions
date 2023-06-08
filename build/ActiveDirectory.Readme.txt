@@ -17,7 +17,7 @@ for ASP.Net Identity for the Umbraco back office.
 
 The usage of this extension method in your OWIN startup class will look like this:
 
-            app.ConfigureBackOfficeAzureActiveDirectoryAuth(
+            app.ConfigureBackOfficeAzureActiveDirectoryAuthentication(
               "YOUR_TENANT",
               "YOUR_CLIENT_ID",
               "YOUR_CLIENT_SECRET",
