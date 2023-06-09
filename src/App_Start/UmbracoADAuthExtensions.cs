@@ -44,8 +44,8 @@ namespace $rootnamespace$
         ///  ActiveDirectory account documentation for ASP.Net Identity can be found:
         ///  https://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNet
         ///  </remarks>
-        public static void ConfigureBackOfficeAzureActiveDirectoryAuth(this IAppBuilder app, 
-            string tenant, string clientId, string postLoginRedirectUri, Guid issuerId,
+        public static void ConfigureBackOfficeAzureActiveDirectoryAuthentication(this IAppBuilder app, 
+            string tenant, string clientId, string clientSecret, string postLoginRedirectUri, Guid issuerId,
             string caption = "Active Directory", string style = "btn-microsoft", string icon = "fa-windows")
         {         
             var authority = string.Format(
@@ -60,17 +60,31 @@ namespace $rootnamespace$
                 Authority = authority,
                 RedirectUri = postLoginRedirectUri
             };
+            if (clientSecret != null)  
+                adOptions.ClientSecret=clientSecret;
 
             adOptions.ForUmbracoBackOffice(style, icon);            
             adOptions.Caption = caption;
-            //Need to set the auth tyep as the issuer path
+            //Need to set the auth type as the issuer path
             adOptions.AuthenticationType = string.Format(
                 CultureInfo.InvariantCulture,
                 "https://sts.windows.net/{0}/",
                 issuerId);
             app.UseOpenIdConnectAuthentication(adOptions);            
-        }    
+        }
+
+        [Obsolete("ConfigureBackOfficeAzureActiveDirectoryAuth has been deprecated , Please use ConfigureBackOfficeAzureActiveDirectoryAuthentication with clientSecret instead!")]
+        public static void ConfigureBackOfficeAzureActiveDirectoryAuth(this IAppBuilder app, 
+            string tenant, string clientId, string postLoginRedirectUri, Guid issuerId,
+            string caption = "Active Directory", string style = "btn-microsoft", string icon = "fa-windows")
+        {         
+            ConfigureBackOfficeAzureActiveDirectoryAuthentication(app,tenant,clientId,null,
+            postLoginRedirectUri,issuerId,
+            caption,style,icon);
+        }       
 
     }
+
+
     
 }
