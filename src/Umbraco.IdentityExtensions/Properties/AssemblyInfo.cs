@@ -24,4 +24,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyFileVersion("2.0.1")]
 [assembly: AssemblyInformationalVersion("2.0.1")]
-[assembly: AssemblyCopyright("Copyright © Umbraco 2019")]
+[assembly: AssemblyCopyright("Copyright © Umbraco 2023")]
