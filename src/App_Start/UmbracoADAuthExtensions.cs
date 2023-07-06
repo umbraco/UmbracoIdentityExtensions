@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using Microsoft.Owin;
 using Owin;
 using Umbraco.Core;
 using Umbraco.Web.Security;
 using Microsoft.Owin.Security.OpenIdConnect;
+using System.Net.Http;
+using IdentityModel.Client;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace $rootnamespace$
 {
@@ -58,7 +55,41 @@ namespace $rootnamespace$
                 SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType,
                 ClientId = clientId,
                 Authority = authority,
-                RedirectUri = postLoginRedirectUri
+                RedirectUri = postLoginRedirectUri,
+                Notifications = new OpenIdConnectAuthenticationNotifications()
+                {
+                    AuthorizationCodeReceived = async n =>
+                    {
+                        if (clientSecret == null)
+                        {
+                            return;
+                        }
+
+#pragma warning disable IDE0063 // Use simple 'using' statement
+                        using (HttpMessageHandler handler = new HttpClientHandler())
+                        {
+                            using (HttpMessageInvoker invoker = new HttpMessageInvoker(handler))
+                            {
+                                var tokenClient = new TokenClient(invoker, new TokenClientOptions()
+                                {
+                                    ClientId = clientId,
+                                    ClientSecret = clientSecret,
+                                    Address = $"{authority}/oauth2/token"
+                                });
+
+                                var tokenResponse = await tokenClient.RequestAuthorizationCodeTokenAsync(n.Code, postLoginRedirectUri);
+
+                                if (tokenResponse.IsError)
+                                {
+                                    throw new Exception(tokenResponse.Error);
+                                }
+
+                                return;
+                            }
+                        }
+#pragma warning restore IDE0063 // Use simple 'using' statement
+                    }
+                }
             };
             if (clientSecret != null)  
                 adOptions.ClientSecret=clientSecret;
