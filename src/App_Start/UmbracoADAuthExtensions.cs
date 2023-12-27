@@ -93,7 +93,7 @@ namespace $rootnamespace$
                         }
     #pragma warning restore IDE0063 // Use simple 'using' statement
                     }
-                }
+                };
             }
             else
             {
