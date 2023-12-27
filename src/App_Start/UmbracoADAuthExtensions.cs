@@ -5,8 +5,6 @@ using Umbraco.Core;
 using Umbraco.Web.Security;
 using Microsoft.Owin.Security.OpenIdConnect;
 using System.Net.Http;
-using IdentityModel.Client;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Collections.Generic;
 
 namespace $rootnamespace$
