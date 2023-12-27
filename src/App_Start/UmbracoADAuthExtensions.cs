@@ -59,7 +59,7 @@ namespace $rootnamespace$
             if (clientSecret != null)  
                 adOptions.ClientSecret=clientSecret;
 
-            if(authenticationNotifications != null)
+            if(authenticationNotifications == null)
             {
                 adOptions.Notifications = new OpenIdConnectAuthenticationNotifications()
                 {
@@ -95,6 +95,10 @@ namespace $rootnamespace$
                     }
                 }
             }
+        else
+        {
+            adOptions.Notifications = authenticationNotifications;
+        }
 
             adOptions.ForUmbracoBackOffice(style, icon);            
             adOptions.Caption = caption;
