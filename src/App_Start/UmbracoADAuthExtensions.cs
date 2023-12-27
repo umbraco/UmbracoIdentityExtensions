@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.OpenIdConnect;
 using System.Net.Http;
 using IdentityModel.Client;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Collections.Generic;
 
 namespace $rootnamespace$
 {
@@ -43,7 +44,7 @@ namespace $rootnamespace$
         ///  </remarks>
         public static void ConfigureBackOfficeAzureActiveDirectoryAuthentication(this IAppBuilder app, 
             string tenant, string clientId, string clientSecret, string postLoginRedirectUri, Guid issuerId,
-            string caption = "Active Directory", string style = "btn-microsoft", string icon = "fa-windows")
+            string caption = "Active Directory", string style = "btn-microsoft", string icon = "fa-windows", OpenIdConnectAuthenticationNotifications authenticationNotifications = null)
         {         
             var authority = string.Format(
                 CultureInfo.InvariantCulture, 
@@ -56,7 +57,13 @@ namespace $rootnamespace$
                 ClientId = clientId,
                 Authority = authority,
                 RedirectUri = postLoginRedirectUri,
-                Notifications = new OpenIdConnectAuthenticationNotifications()
+            };
+            if (clientSecret != null)  
+                adOptions.ClientSecret=clientSecret;
+
+            if(authenticationNotifications != null)
+            {
+                adOptions.Notifications = new OpenIdConnectAuthenticationNotifications()
                 {
                     AuthorizationCodeReceived = async n =>
                     {
@@ -65,34 +72,31 @@ namespace $rootnamespace$
                             return;
                         }
 
-#pragma warning disable IDE0063 // Use simple 'using' statement
-                        using (HttpMessageHandler handler = new HttpClientHandler())
+    #pragma warning disable IDE0063 // Use simple 'using' statement
+                        using (var client = new HttpClient())
                         {
-                            using (HttpMessageInvoker invoker = new HttpMessageInvoker(handler))
+                            var requestContent = new FormUrlEncodedContent(new Dictionary<string, string>
                             {
-                                var tokenClient = new TokenClient(invoker, new TokenClientOptions()
-                                {
-                                    ClientId = clientId,
-                                    ClientSecret = clientSecret,
-                                    Address = $"{authority}/oauth2/token"
-                                });
+                                ["client_id"] = clientId,
+                                ["client_secret"] = clientSecret,
+                                ["code"] = n.Code,
+                                ["redirect_uri"] = postLoginRedirectUri,
+                                ["grant_type"] = "authorization_code"
+                            });
+                            var response = await client.PostAsync($"{authority}/oauth2/token", requestContent);
 
-                                var tokenResponse = await tokenClient.RequestAuthorizationCodeTokenAsync(n.Code, postLoginRedirectUri);
-
-                                if (tokenResponse.IsError)
-                                {
-                                    throw new Exception(tokenResponse.Error);
-                                }
-
-                                return;
+                            if (!response.IsSuccessStatusCode)
+                            {
+                                var errorContent = await response.Content.ReadAsStringAsync();
+                                throw new Exception(errorContent);
                             }
+
+                            return;
                         }
-#pragma warning restore IDE0063 // Use simple 'using' statement
+    #pragma warning restore IDE0063 // Use simple 'using' statement
                     }
                 }
-            };
-            if (clientSecret != null)  
-                adOptions.ClientSecret=clientSecret;
+            }
 
             adOptions.ForUmbracoBackOffice(style, icon);            
             adOptions.Caption = caption;
