@@ -95,10 +95,10 @@ namespace $rootnamespace$
                     }
                 }
             }
-        else
-        {
-            adOptions.Notifications = authenticationNotifications;
-        }
+            else
+            {
+                adOptions.Notifications = authenticationNotifications;
+            }
 
             adOptions.ForUmbracoBackOffice(style, icon);            
             adOptions.Caption = caption;
