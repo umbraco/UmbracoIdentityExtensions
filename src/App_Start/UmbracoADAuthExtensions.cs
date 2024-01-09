@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using Microsoft.Owin;
 using Owin;
 using Umbraco.Core;
 using Umbraco.Web.Security;
 using Microsoft.Owin.Security.OpenIdConnect;
+using System.Net.Http;
+using System.Collections.Generic;
 
 namespace $rootnamespace$
 {
@@ -46,7 +42,7 @@ namespace $rootnamespace$
         ///  </remarks>
         public static void ConfigureBackOfficeAzureActiveDirectoryAuthentication(this IAppBuilder app, 
             string tenant, string clientId, string clientSecret, string postLoginRedirectUri, Guid issuerId,
-            string caption = "Active Directory", string style = "btn-microsoft", string icon = "fa-windows")
+            string caption = "Active Directory", string style = "btn-microsoft", string icon = "fa-windows", OpenIdConnectAuthenticationNotifications authenticationNotifications = null)
         {         
             var authority = string.Format(
                 CultureInfo.InvariantCulture, 
@@ -58,10 +54,51 @@ namespace $rootnamespace$
                 SignInAsAuthenticationType = Constants.Security.BackOfficeExternalAuthenticationType,
                 ClientId = clientId,
                 Authority = authority,
-                RedirectUri = postLoginRedirectUri
+                RedirectUri = postLoginRedirectUri,
             };
             if (clientSecret != null)  
                 adOptions.ClientSecret=clientSecret;
+
+            if(authenticationNotifications == null)
+            {
+                adOptions.Notifications = new OpenIdConnectAuthenticationNotifications()
+                {
+                    AuthorizationCodeReceived = async n =>
+                    {
+                        if (clientSecret == null)
+                        {
+                            return;
+                        }
+
+    #pragma warning disable IDE0063 // Use simple 'using' statement
+                        using (var client = new HttpClient())
+                        {
+                            var requestContent = new FormUrlEncodedContent(new Dictionary<string, string>
+                            {
+                                ["client_id"] = clientId,
+                                ["client_secret"] = clientSecret,
+                                ["code"] = n.Code,
+                                ["redirect_uri"] = postLoginRedirectUri,
+                                ["grant_type"] = "authorization_code"
+                            });
+                            var response = await client.PostAsync($"{authority}/oauth2/token", requestContent);
+
+                            if (!response.IsSuccessStatusCode)
+                            {
+                                var errorContent = await response.Content.ReadAsStringAsync();
+                                throw new Exception(errorContent);
+                            }
+
+                            return;
+                        }
+    #pragma warning restore IDE0063 // Use simple 'using' statement
+                    }
+                };
+            }
+            else
+            {
+                adOptions.Notifications = authenticationNotifications;
+            }
 
             adOptions.ForUmbracoBackOffice(style, icon);            
             adOptions.Caption = caption;
