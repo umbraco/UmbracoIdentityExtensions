@@ -22,6 +22,6 @@ using System.Runtime.InteropServices;
 [assembly: Guid("298754bc-c384-4195-9094-24940c569e6a")]
 
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyFileVersion("2.0.1")]
-[assembly: AssemblyInformationalVersion("2.0.1")]
-[assembly: AssemblyCopyright("Copyright © Umbraco 2019")]
+[assembly: AssemblyFileVersion("3.0.0")]
+[assembly: AssemblyInformationalVersion("3.0.0-rc")]
+[assembly: AssemblyCopyright("Copyright © Umbraco 2024")]
